@@ -148,6 +148,7 @@ export default class CandidateService {
 
       return { success: true, message: "Vote cast successfully" };
     } catch (error: any) {
+      console.log(error)
       return { success: false, error: error?.message };
     }
   };
