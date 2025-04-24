@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 
+export function generatePageTitle(title: string) {
+    return title.concat(" | Restful NE")
+}
+
 export const getObjValue = (key: string | number, obj: any) => {
     const keys = key.toString().split('.');
     let result = obj;

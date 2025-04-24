@@ -3,6 +3,8 @@ import useSWR from "swr";
 import axios from "../lib/axios.config";
 import { IBooks } from "@/types";
 
+
+
 const useBooks = () => {
   const { data: books, isLoading, error, mutate } = useSWR<IBooks[]>("/books", async (url: string) => {
     const { data } = await axios.get(url);

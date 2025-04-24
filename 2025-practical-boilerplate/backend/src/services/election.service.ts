@@ -47,19 +47,38 @@ export default class ElectionService {
     }
   };
 
-  public static getAllElections = async () => {
+  public static getAllElections = async (voterAddress?: string) => {
     try {
       const elections = await prisma.election.findMany({
-        include: {
-          candidate: true,
-        },
+        include: { candidate: true },
       });
-
-      return { success: true, elections };
+  
+      const electionsWithStatus = await Promise.all(
+        elections.map(async (election) => {
+          if (!voterAddress) {
+            return { ...election, hasVoted: false };
+          }
+  
+          const vote = await prisma.vote.findFirst({
+            where: {
+              electionId: election.id,
+              voterAddress,
+            },
+          });
+  
+          return {
+            ...election,
+            hasVoted: !!vote,
+          };
+        })
+      );
+  
+      return { success: true, elections: electionsWithStatus };
     } catch (error: any) {
       return { success: false, error: error?.message };
     }
   };
+  
 
   public static getElectionById = async (electionId: string) => {
     try {

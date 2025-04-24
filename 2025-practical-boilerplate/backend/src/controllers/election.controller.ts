@@ -23,19 +23,21 @@ export default class ElectionController{
   }
 
 
-  public static getAllElections = async(req: Request , res: Response , next: NextFunction) => {
-    try{
-        const result = await ElectionService.getAllElections();
-        if (!result.success) {
-            console.log(result.success);
-            return next(new AppError(result.error, 400));
-        }
-
-        return res.status(200).json(result);
-    }catch(err: any){
-        next(new AppError(err.message, 500));
+  public static getAllElections = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const voterAddress = req.query.walletAddress as string | undefined;
+      const result = await ElectionService.getAllElections(voterAddress);
+  
+      if (!result.success) {
+        return next(new AppError(result.error, 400));
+      }
+  
+      return res.status(200).json(result);
+    } catch (err: any) {
+      next(new AppError(err.message, 500));
     }
-  }
+  };
+  
 
   public static getElectionsById = async(req: Request , res: Response , next: NextFunction) => {
     const electionId = req.params.id

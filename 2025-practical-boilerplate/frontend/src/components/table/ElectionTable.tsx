@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { paginate } from "@/lib/utils";
 import useElections from "@/hooks/useElection";
 import { IElection } from "@/types";
-import VoteModal from "@/components/modals/VoteModal"; // Adjust path if needed
+import VoteModal from "@/components/modals/VoteModal";
 
 interface ElectionTableProps {
   searchQuery: string;
@@ -12,7 +12,27 @@ interface ElectionTableProps {
 }
 
 const ElectionTable: React.FC<ElectionTableProps> = ({ searchQuery, onVote }) => {
-  const { elections, error } = useElections();
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+
+  // Try to get the wallet address on mount
+  useEffect(() => {
+    const fetchWalletAddress = async () => {
+      if (typeof window !== "undefined" && window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({ method: "eth_accounts" });
+          if (accounts.length > 0) {
+            setWalletAddress(accounts[0]);
+          }
+        } catch (err) {
+          console.warn("Could not fetch wallet address:", err);
+        }
+      }
+    };
+
+    fetchWalletAddress();
+  }, []);
+
+  const { elections, error } = useElections(walletAddress);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(3);
   const [filteredElections, setFilteredElections] = useState<IElection[]>([]);
@@ -59,7 +79,9 @@ const ElectionTable: React.FC<ElectionTableProps> = ({ searchQuery, onVote }) =>
       title: "Active",
       dataIndex: "isActive",
       key: "isActive",
-      render: (active: boolean) => <Tag color={active ? "green" : "red"}>{active ? "Yes" : "No"}</Tag>,
+      render: (active: boolean) => (
+        <Tag color={active ? "green" : "red"}>{active ? "Yes" : "No"}</Tag>
+      ),
     },
     {
       title: "Start Date",
@@ -76,19 +98,31 @@ const ElectionTable: React.FC<ElectionTableProps> = ({ searchQuery, onVote }) =>
     {
       title: "Vote",
       key: "vote",
-      render: (_: any, record: IElection) => (
-        <Button
-          type="primary"
-          size="small"
-          disabled={!record.isActive}
-          onClick={() => {
-            setSelectedElection(record);
-            setModalVisible(true);
-          }}
-        >
-          Vote
-        </Button>
-      ),
+      render: (_: any, record: IElection) => {
+        const hasVoted = record.hasVoted;
+        const isActive = record.isActive;
+
+        return (
+          <Button
+            type="primary"
+            size="small"
+            disabled={!isActive || hasVoted}
+            className={`rounded-xl ${
+              !isActive
+                ? "bg-gray-400 cursor-not-allowed"
+                : hasVoted
+                ? "bg-orange-500 hover:bg-orange-600"
+                : "bg-green-600 hover:bg-green-700"
+            } text-white border-none`}
+            onClick={() => {
+              setSelectedElection(record);
+              setModalVisible(true);
+            }}
+          >
+            {hasVoted ? "Voted" : "Vote"}
+          </Button>
+        );
+      },
     },
   ];
 

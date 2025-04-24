@@ -15,13 +15,10 @@ import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import Overview from "./pages/dashboard/Overview";
 import Elections from "./pages/dashboard/Elections";
+import Home from "./pages/Home";
 
 
-const Home = () => {
-  const { user } = useAuth()
 
-  return <h1 className="text-center text-8xl text-red-500 font-bold">Hello {user?.firstName + " " + user?.lastName}</h1>
-};
 
 function AppRoutes() {
   const { user, initialLoading } = useAuth();

@@ -30,7 +30,8 @@ export interface ICandidate {
     title: string;
     description: string;
     startDate: string; 
-    endDate: string;  
+    endDate: string; 
+    hasVoted: boolean;
     isActive: boolean;
     createdAt: string;
     updatedAt: string;

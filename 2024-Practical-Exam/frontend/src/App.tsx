@@ -15,12 +15,9 @@ import PageLoader from "./components/shared/PageLoader";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Book from "./pages/dashboard/Book";
 import Overview from "./pages/dashboard/Overview";
+import Home from "./pages/Home";
 
-const Home = () => {
-  const { user } = useAuth()
 
-  return <h1 className="text-center text-8xl text-red-500 font-bold">Hello {user?.firstName + " " + user?.lastName}</h1>
-};
 
 function AppRoutes() {
   const { user, initialLoading } = useAuth();

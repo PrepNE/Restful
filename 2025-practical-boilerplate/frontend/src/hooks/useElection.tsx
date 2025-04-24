@@ -4,16 +4,19 @@ import axios from "../lib/axios.config";
 import { IElection } from "@/types";
 import { notification } from "antd";
 
-const useElections = () => {
+const useElections = (walletAddress: string | null) => {
   const {
     data: elections,
     isLoading,
     error,
     mutate,
-  } = useSWR<IElection[]>("/elections", async (url: string) => {
-    const { data } = await axios.get(url);
-    return data.elections;
-  });
+  } = useSWR<IElection[]>(
+    walletAddress ? `/elections?walletAddress=${walletAddress}` : "/elections",
+    async (url: string) => {
+      const { data } = await axios.get(url);
+      return data.elections;
+    }
+  );
 
   const vote = async (electionId: string, candidateId: string) => {
     try {
@@ -21,6 +24,7 @@ const useElections = () => {
         method: "eth_requestAccounts",
       });
       const voterAddress = accounts[0];
+
       const { data } = await axios.post(
         `/candidates/elections/${electionId}/candidates/${candidateId}/vote`,
         { voterAddress }
@@ -30,7 +34,20 @@ const useElections = () => {
         notification.success({
           message: data.message,
         });
-        mutate();
+        mutate(
+          (currentElections: IElection[] | undefined) => {
+            const updatedElections = currentElections?.map((election) => {
+              if (election.id === electionId) {
+                return {
+                  ...election,
+                  hasVoted: true,
+                };
+              }
+              return election;
+            });
+            return updatedElections;
+          }
+        );
       } else {
         notification.error({
           message: data?.message || "Vote failed",
