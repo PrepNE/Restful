@@ -4,7 +4,7 @@ import axios from "../lib/axios.config";
 import { IElection } from "@/types";
 import { notification } from "antd";
 
-const useElections = (walletAddress: string | null) => {
+const useElections = (walletAddress?: string | null) => {
   const {
     data: elections,
     isLoading,

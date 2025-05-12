@@ -5,7 +5,7 @@ export default function Overview() {
    const { elections } = useElections();
 
   return (
-    <div className="w-full flex flex-col gap-y-6">
+    <div className="w-full flex flex-col gap-y-6 px-4">
       <div>
         <h2 className="text-2xl font-semibold">Overview</h2>
         <p className="text-gray-500">Hello there! here is a summary for you</p>
