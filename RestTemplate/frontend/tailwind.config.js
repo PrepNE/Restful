@@ -11,7 +11,7 @@ export default {
     },
     extend: {
       colors: {
-        primary: ""
+        primary: "#3a86ff"
       },
       fontFamily: {
         sans: ["Montserrat", "sans-serif"],
