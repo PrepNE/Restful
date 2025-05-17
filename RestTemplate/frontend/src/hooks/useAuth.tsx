@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [registering, setRegistering] = useState<boolean>(false);
   const [loggingIn, setLoggingIn] = useState<boolean>(false);
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
-  const [loggingOut ,setLoggingOut] = useState<boolean>(false);
+  const [loggingOut, setLoggingOut] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -46,97 +46,94 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         deleteCookie("token");
       }
 
-      setInitialLoading(false)
+      setInitialLoading(false);
     };
 
     checkAuth();
   }, []);
 
+  const login = async (email: string, password: string) => {
+    setLoggingIn(true);
+    try {
+      const { data } = await axios.post("/auth/login", { email, password });
+      setUser(data.body);
+      notification.success({ message: data.message });
+      navigate("/dashboard");
+    } catch (error: any) {
+      console.error("Login error: ", error);
+      notification.error({
+        message: error?.response?.data?.message || "Login failed",
+      });
+    } finally {
+      setLoggingIn(false);
+    }
+  };
 
-  const login = async(email: string , password: string) => {
-     setLoggingIn(true);
-     try{
-        const { data } = await axios.post("/auth/login", { email , password});
-        setUser(data.body)
-        setCookie("token", data.token, 7)
-        notification.success({
-            message: data.message
-        })
-
-        navigate("/dashboard")
-
-     }catch(error: any){
-        console.error("Here is the error while loggin in: ", error?.message)
-        notification.error({
-            message: error?.message
-        })
-     } finally {
-        setLoggingIn(false)
-     }
-  }
-
-
-  const register = async(
-    user: Omit<IUser , "id"> & {
-        password: string
+  const register = async (
+    user: Omit<IUser, "id"> & {
+      password: string;
     }
   ) => {
-    setRegistering(true)
-    try{
-        const { data } = await axios.post("/auth/register", user);
+    setRegistering(true);
+    try {
+      const { data } = await axios.post("/auth/register", user);
 
-        if(data.success){
-            notification.success({
-                message: data.message
-            })
-            navigate("/login")
-        }else {
-            notification.error({
-                message: "Something went wrong"
-            })
-        }
-
-    }catch(error: any){
-        console.error("Error while registering: ", error?.message);
-        notification.error({
-            message: error?.message
-        })
-    }
-  }
-
-   const logout = async() => {
-    setLoggingOut(true)
-    try{
-        setUser(null);
-        deleteCookie("token")
+      if (data.success) {
         notification.success({
-            message: "Logout successfully"
-        })
-        navigate("/login")
-    }catch (error: any) {
-        notification.error({
-          message: error?.message,
+          message: data.message,
         });
-    }finally{
-        setLoggingOut(false)
+        navigate("/login");
+      } else {
+        notification.error({
+          message: "Something went wrong",
+        });
+      }
+    } catch (error: any) {
+      console.error("Error while registering: ", error?.message);
+      notification.error({
+        message: error?.message,
+      });
     }
-  }
+  };
+
+  const logout = async () => {
+    setLoggingOut(true);
+    try {
+      await axios.post("/auth/logout");
+      setUser(null);
+      notification.success({ message: "Logged out successfully" });
+      navigate("/login");
+    } catch (err: any) {
+      notification.error({
+        message: err?.response?.data?.message || "Logout failed",
+      });
+    } finally {
+      setLoggingOut(false);
+    }
+  };
 
   return (
     <AuthContext.Provider
-      value={{ user ,login , loggingIn, register, registering ,logout , loggingOut, initialLoading}}
+      value={{
+        user,
+        login,
+        loggingIn,
+        register,
+        registering,
+        logout,
+        loggingOut,
+        initialLoading,
+      }}
     >
-        {children}
+      {children}
     </AuthContext.Provider>
-  )
-
+  );
 };
 
-
-export default function useAuth(){
-    const context = useContext(AuthContext);
-    if(!context){
-        throw new Error("useAuth must be used within an AuthProvider");
-    }
-    return context;
+export default function useAuth() {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 }

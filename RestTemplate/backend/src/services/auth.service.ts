@@ -18,6 +18,7 @@ export default class AuthService {
 
     const token = generateToken(user.id, user.email, user.role);
 
+
     return {
       success: true,
       message: "Login successful",
