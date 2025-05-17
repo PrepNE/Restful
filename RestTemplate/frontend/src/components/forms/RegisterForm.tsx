@@ -80,12 +80,10 @@ const RegisterForm = () => {
               message: "Please input your Password!",
             },
             {
-              min: 6,
-              message: "Password must be at least 6 characters long!",
-            },
-            {
-              pattern: /^(?=.*[a-z]).{6,}$/,
-              message: "Password must contain at least one letter!",
+              pattern:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
+              message:
+                "Password must be at least 6 characters, include uppercase, lowercase, number, and special character.",
             },
           ]}
         />

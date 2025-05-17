@@ -1,12 +1,11 @@
 import { CarOutlined, HomeOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Typography } from "antd";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import LinkButton from "antd/es/typography/Link";
 import useAuth from "@/hooks/useAuth";
+import Logo from "./Logo";
 
 const Sidebar = () => {
-  const { Text } = Typography;
   const location = useLocation();
   const { logout} = useAuth();
 
@@ -36,14 +35,7 @@ const Sidebar = () => {
           <ul className="space-y-1 flex-1 flex-col h-5/6 pb-2">
             <li className="pb-4">
               <Link to={"/"} className="font-bold flex items-center lg:ml-2.5">
-                <img
-                  src="/vehicle.png"
-                  alt="vehicle logo"
-                  className="h-8 mr-2"
-                />
-                <Text className="self-center whitespace-nowrap text-xl">
-                  <Text className="text-blue-700 font-bold text-2xl">PMS</Text>
-                </Text>
+                <Logo />
               </Link>
             </li>
 
