@@ -3,10 +3,12 @@ import { Typography } from "antd";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import LinkButton from "antd/es/typography/Link";
+import useAuth from "@/hooks/useAuth";
 
 const Sidebar = () => {
   const { Text } = Typography;
   const location = useLocation();
+  const { logout} = useAuth();
 
   const pageDirectories = [
     {
@@ -64,7 +66,7 @@ const Sidebar = () => {
           </ul>
 
           <div className="space-y-2 p-2 z-10">
-            <LinkButton>
+            <LinkButton onClick={logout}>
               <LogoutOutlined />
               <span className="ml-3 text-base text-primary whitespace-nowrap">
                 Logout

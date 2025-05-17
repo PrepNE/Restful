@@ -13,7 +13,7 @@ export default function Overview() {
                     <p className="text-gray-500">Hello there! here is a summary for you</p>
                 </div>
                 <div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <StatsCard title="Vehicles" value={0} link="/dashboard/vehicles" />
+                    <StatsCard title="Vehicles" value={0} link="/dashboard/slots" />
                 </div>
             </div>
         </>

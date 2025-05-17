@@ -4,13 +4,22 @@ import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import React from "react";
 import FormInput from "../shared/FormInput";
 import Link from "antd/es/typography/Link";
+import useAuth from "@/hooks/useAuth";
 
 const RegisterForm = () => {
   const [form] = useForm();
   const { Text, Title } = Typography;
+  const { register } = useAuth();
 
   const handleOnFinish = async () => {
-    console.log("Submitted!!!");
+    form
+      .validateFields()
+      .then(async (values) => {
+        await register(values);
+      })
+      .catch((info) => {
+        console.log("Validate Failed:", info);
+      });
   };
   return (
     <div className="md:mx-auto max-w-3xl lg:w-[80%]">
@@ -35,14 +44,14 @@ const RegisterForm = () => {
           label="First Name"
           placeholder="Enter your first name"
           prefix={<UserOutlined />}
-           rules={[{ required: true, message: "Please input your first name!" }]}
+          rules={[{ required: true, message: "Please input your first name!" }]}
         />
         <FormInput
           name="lastName"
           label="Last Name"
           placeholder="Enter your last name"
           prefix={<UserOutlined />}
-           rules={[{ required: true, message: "Please input your last name!" }]}
+          rules={[{ required: true, message: "Please input your last name!" }]}
         />
 
         <FormInput

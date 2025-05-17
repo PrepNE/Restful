@@ -4,14 +4,22 @@ import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import React from "react";
 import FormInput from "../shared/FormInput";
 import { Link } from "react-router-dom";
+import useAuth from "@/hooks/useAuth";
 
 
 const LoginForm = () => {
   const [form] = useForm();
   const { Text, Title } = Typography;
+  const { login , loggingIn} = useAuth();
 
-  const handleOnFinish = async () => {
-    console.log("Submitted!!!");
+  const handleKeyDownPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === ' ') {
+        event.preventDefault();
+        return false;
+    }
+}
+const handleOnFinish = async (values: { email: string; password: string }) => {
+    await login(values.email, values.password);
   };
   return (
     <div className="md:mx-auto max-w-3xl lg:w-[80%]">
@@ -50,6 +58,7 @@ const LoginForm = () => {
           name="password"
           label="Password"
           type="password"
+          onKeyDown={handleKeyDownPress}
           prefix={<LockOutlined />}
           rules={[
             {
@@ -72,6 +81,7 @@ const LoginForm = () => {
           block
           htmlType="submit"
           type="primary"
+          disabled={loggingIn}
           className="w-full shadow-xl px-4 text-sm font-semibold rounded py-6 text-white bg-primary hover:bg-green-400 focus:outline-none"
         >
           Log In

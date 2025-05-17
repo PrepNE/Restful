@@ -5,36 +5,74 @@ import DashboardLayout from "./layout/DashboardLayout";
 import Overview from "./pages/dashboard/Overview";
 import Slots from "./pages/dashboard/Slots";
 import NotFound from "./pages/404";
+import { RecoilRoot } from "recoil";
+import useAuth, { AuthProvider } from "./hooks/useAuth";
+import PageLoader from "./components/shared/PageLoader";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import Home from "./pages/Home";
+import PublicRoute from "./routes/PublicRoute";
 
 function AppRoutes() {
+  const { user, initialLoading } = useAuth();
+
+  const isAuthenticated = !!user;
+
+  if (initialLoading) {
+    return <PageLoader />;
+  }
+
   return (
     <Routes>
       <Route
         path="/"
         element={
-          <h1 className="text-red-500 font-bold text-5xl items-center text-center">
-            Hello World
-          </h1>
+          <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <Home />
+          </ProtectedRoute>
         }
       />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-
-      <Route path="/dashboard" element={<DashboardLayout />}>
+      <Route
+        path="/register"
+        element={
+          <PublicRoute isAuthenticated={isAuthenticated}>
+            <Register />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <PublicRoute isAuthenticated={isAuthenticated}>
+            <Login />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <DashboardLayout />
+          </ProtectedRoute>
+        }
+      >
         <Route index element={<Overview />} />
         <Route path="slots" element={<Slots />} />
       </Route>
 
-      <Route path="*"  element={<NotFound />}/>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
 
 function App() {
   return (
-    <Router>
-      <AppRoutes />
-    </Router>
+    <RecoilRoot>
+      <Router>
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
+      </Router>
+    </RecoilRoot>
   );
 }
 
