@@ -6,7 +6,6 @@ const PublicRoute = ({ isAuthenticated, children }: { isAuthenticated: boolean, 
     const navigate = useNavigate()
     const [loading, setLoading] = useState(true);
 
-    // Logic behind public route to access without authentication
     useEffect(() => {
         if (isAuthenticated) {
             navigate('/dashboard');

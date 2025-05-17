@@ -45,18 +45,16 @@ export default function Home() {
           </div>
         </header>
         
-        {/* Main content */}
         <main className="flex-1 flex items-center justify-center px-6 py-12">
           <div className="max-w-lg w-full">
             <div className="text-center space-y-6 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-              {/* Welcome image/icon */}
               <div className="mx-auto h-24 w-24 bg-blue-100 rounded-full flex items-center justify-center">
                 <svg className="h-12 w-12 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
               </div>
               
-              {/* Welcome text */}
+     
               <div>
                 <p className="text-blue-600 font-semibold">{greeting}!</p>
                 <h1 className="mt-2 text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -64,14 +62,14 @@ export default function Home() {
                 </h1>
               </div>
               
-              {/* User-specific message */}
+    
               <p className="text-gray-600 max-w-md mx-auto">
                 {user
                   ? `You're logged in as ${user.firstName} ${user.lastName}. Access your personalized dashboard to get started.`
                   : "Join our community to access exclusive features and personalized content. It only takes a minute to get started."}
               </p>
               
-              {/* Call to action buttons */}
+
               {user ? (
                 <Link to="/dashboard">
                   <button className="mt-4 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 flex items-center justify-center w-full sm:w-auto mx-auto">
@@ -97,7 +95,7 @@ export default function Home() {
               )}
             </div>
             
-            {/* Feature highlights */}
+    
             {!user && (
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
@@ -123,8 +121,7 @@ export default function Home() {
             )}
           </div>
         </main>
-        
-        {/* Footer */}
+    
         <footer className="bg-gray-50 py-6 border-t border-gray-200">
           <div className="max-w-7xl mx-auto px-6 text-center text-gray-500 text-sm">
             <p>© {new Date().getFullYear()} CompanyName. All rights reserved.</p>

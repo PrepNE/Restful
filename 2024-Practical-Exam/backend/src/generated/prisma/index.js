@@ -144,7 +144,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\nzabe\\OneDrive\\Desktop\\academics\\Y3\\NE_STARTERS\\Restful\\backend\\src\\generated\\prisma",
+      "value": "C:\\Users\\nzabe\\OneDrive\\Desktop\\academics\\Y3\\NE_STARTERS\\Restful\\2024-Practical-Exam\\backend\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -158,7 +158,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\nzabe\\OneDrive\\Desktop\\academics\\Y3\\NE_STARTERS\\Restful\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\nzabe\\OneDrive\\Desktop\\academics\\Y3\\NE_STARTERS\\Restful\\2024-Practical-Exam\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
