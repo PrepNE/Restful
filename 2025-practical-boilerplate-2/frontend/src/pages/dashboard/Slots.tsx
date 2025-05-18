@@ -1,0 +1,159 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from "react";
+import SearchInput from "@/components/shared/SearchInput";
+import { Button, Tag, Checkbox } from "antd";
+import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import EditModal from "@/components/modals/EditModal";
+import DeleteConfirmationModal from "@/components/modals/DeleteConfirmationModal";
+import DataTable from "@/components/tables/DataTable";
+import { ParkingLot } from "@/types";
+import { dummyLots } from "@/utils/constants";
+
+
+const ParkingLots = () => {
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [parkingLots, setParkingLots] = useState<ParkingLot[]>(dummyLots);
+
+  const handleSearchQueryChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchValue(event.target.value);
+  };
+
+  const handleDelete = async (id: string) => {
+    setParkingLots((prev) => prev.filter((lot) => lot.id !== id));
+  };
+
+  const handleEdit = async (updatedLot: ParkingLot) => {
+    setParkingLots((prev) =>
+      prev.map((lot) => (lot.id === updatedLot.id ? updatedLot : lot))
+    );
+  };
+
+
+  const columns = (
+    selectedKey: string | null,
+    handleEditRow: (lot: ParkingLot) => void,
+    handleDeleteRow: () => void,
+    handleCheckBoxChange: (key: string, item: ParkingLot) => void
+  ) => {
+    const baseColumns = [
+      {
+        title: "",
+        key: "checkbox",
+        render: (_: any, record: ParkingLot) => (
+          <Checkbox
+            checked={record.id === selectedKey}
+            onChange={() => handleCheckBoxChange(record.id.toString(), record)}
+          />
+        ),
+      },
+      { title: "Name", dataIndex: "name", key: "name" },
+      {
+        title: "Occupancy",
+        key: "occupancy",
+        render: (_: any, record: ParkingLot) => (
+          <Tag color={record.currentOccupancy < record.capacity ? "green" : "red"}>
+            {`${record.currentOccupancy} / ${record.capacity}`}
+          </Tag>
+        ),
+      },
+      { title: "Hourly Rate (RWF)", dataIndex: "hourlyRate", key: "hourlyRate" },
+      { title: "Location", dataIndex: "location", key: "location" },
+    ];
+
+    const actionColumn = {
+      title: "Action",
+      key: "action",
+      render: (_: any, record: ParkingLot) =>
+        record.id === selectedKey ? (
+          <span className="flex flex-1 flex-row gap-x-4">
+            <Button onClick={() => handleEditRow(record)}>
+              <EditOutlined /> Edit
+            </Button>
+            <Button danger onClick={handleDeleteRow}>
+              <DeleteOutlined /> Delete
+            </Button>
+          </span>
+        ) : null,
+    };
+
+    return selectedKey ? [...baseColumns, actionColumn] : baseColumns;
+  };
+
+  return (
+    <div className="bg-white px-10 py-6 rounded-lg">
+      <div className="flex flex-1 sm:flex-row flex-col gap-y-4 justify-between pb-6">
+        <div>
+          <h1 className="text-base font-medium">Manage Parking Lots</h1>
+          <p className="text-gray-500 text-[14px]">
+            View, edit, and delete your parking lots below.
+          </p>
+        </div>
+        <div className="flex flex-row gap-x-2">
+          <SearchInput
+            searchQueryValue={searchValue}
+            handleSearchQueryValue={handleSearchQueryChange}
+          />
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            className="h-[40px]"
+            // onClick={() => setShowCreateModal(true)}
+          >
+            New Parking Lot
+          </Button>
+        </div>
+      </div>
+
+      <DataTable<ParkingLot>
+        data={parkingLots}
+        searchQuery={searchValue}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+        columns={columns}
+        rowKey="id"
+        EditModalComponent={EditModal}
+        DeleteModalComponent={DeleteConfirmationModal}
+        modalTitle="Edit Parking Lot"
+        editFields={[
+          {
+            name: "name",
+            label: "Lot Name",
+            placeholder: "e.g. Lot A1",
+            rules: [{ required: true, message: "Lot name is required" }],
+          },
+          {
+            name: "hourlyRate",
+            label: "Hourly Rate",
+            inputType: "number",
+            placeholder: "Enter rate",
+            rules: [{ required: true, message: "Hourly rate is required" }],
+          },
+          {
+            name: "location",
+            label: "Location",
+            placeholder: "e.g. Ground Floor",
+            rules: [{ required: true, message: "Location is required" }],
+          },
+          {
+            name: "capacity",
+            label: "Capacity",
+            inputType: "number",
+            placeholder: "Enter number of vehicles it can hold",
+            rules: [{ required: true, message: "Capacity is required" }],
+          },
+          {
+            name: "currentOccupancy",
+            label: "Current Occupancy",
+            inputType: "number",
+            placeholder: "Enter current occupancy",
+            rules: [{ required: true, message: "Current occupancy is required" }],
+          },
+        ]}
+      />
+    </div>
+  );
+};
+
+export default ParkingLots;
