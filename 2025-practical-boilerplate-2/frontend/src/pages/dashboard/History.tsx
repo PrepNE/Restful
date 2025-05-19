@@ -1,43 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
-import {  Card, Typography, Select, Table, Tag, Space } from "antd";
-import { ClockCircleOutlined, EnvironmentOutlined } from "@ant-design/icons";
-
+import { Card, Typography, Select, Table, Tag, Space } from "antd";
+import {
+  ClockCircleOutlined,
+  EnvironmentOutlined,
+} from "@ant-design/icons";
+import useVehicles from "@/hooks/useVehicles";
+import useParkingRecords from "@/hooks/useParkingRecords";
 
 const { Title, Paragraph, Text } = Typography;
 const { Option } = Select;
 
-const userVehicles = [
-  { id: "v1", plateNumber: "RAB123A", make: "Toyota", model: "Corolla" },
-  { id: "v2", plateNumber: "RAC456B", make: "Honda", model: "Civic" },
-];
-
-const allParkingRecords = [
-  {
-    id: "p1",
-    vehicleId: "v1",
-    plateNumber: "RAB123A",
-    parkingLotName: "Kigali Heights",
-    checkInTime: new Date("2024-05-01T10:00:00"),
-    checkOutTime: new Date("2024-05-01T12:30:00"),
-    duration: 150,
-    amount: 1500,
-  },
-  {
-    id: "p2",
-    vehicleId: "v2",
-    plateNumber: "RAC456B",
-    parkingLotName: "Remera Parking",
-    checkInTime: new Date("2024-05-02T08:15:00"),
-    checkOutTime: null,
-    duration: null,
-    amount: null,
-  },
-];
-
-const formatDate = (date: Date | null) =>
+const formatDate = (date: string | null) =>
   date ? new Date(date).toLocaleString() : "N/A";
 
-const formatDuration = (minutes?: number) => {
+const formatDuration = (minutes?: number | null) => {
   if (!minutes) return "N/A";
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
@@ -45,32 +22,31 @@ const formatDuration = (minutes?: number) => {
 };
 
 const History = () => {
-  const [selectedVehicle, setSelectedVehicle] = useState<string | undefined>(undefined);
+  const [selectedPlate, setSelectedPlate] = useState<string | undefined>(undefined);
 
-  const parkingRecords = selectedVehicle
-    ? allParkingRecords.filter((r) => r.vehicleId === selectedVehicle)
-    : allParkingRecords;
+  const { vehicles, isLoading: vehiclesLoading } = useVehicles();
+  const {
+    history: parkingRecords,
+    isLoading: recordsLoading,
+  } = useParkingRecords(selectedPlate);
 
-  const sortedRecords = [...parkingRecords].sort(
-    (a, b) => new Date(b.checkInTime).getTime() - new Date(a.checkInTime).getTime()
-  );
-
-  const totalSpent = sortedRecords.reduce((sum, r) => sum + (r.amount || 0), 0);
+  const totalSpent = parkingRecords?.reduce((sum, r) => sum + (r.amountPaid || 0), 0) || 0;
 
   const columns = [
     {
       title: "Vehicle",
-      dataIndex: "plateNumber",
+      dataIndex: "vehicle",
       key: "plateNumber",
+      render: (vehicle: any) => vehicle?.plateNumber || "N/A",
     },
     {
       title: "Parking Location",
-      dataIndex: "parkingLotName",
+      dataIndex: "parkingLot",
       key: "parkingLotName",
-      render: (text: string) => (
+      render: (parkingLot: any) => (
         <Space>
           <EnvironmentOutlined style={{ color: "#888" }} />
-          {text}
+          {parkingLot?.name || "Unknown"}
         </Space>
       ),
     },
@@ -78,13 +54,13 @@ const History = () => {
       title: "Check-in Time",
       dataIndex: "checkInTime",
       key: "checkInTime",
-      render: (time: Date) => formatDate(time),
+      render: (time: string) => formatDate(time),
     },
     {
       title: "Check-out Time",
       dataIndex: "checkOutTime",
       key: "checkOutTime",
-      render: (time: Date | null) =>
+      render: (time: string | null) =>
         time ? (
           formatDate(time)
         ) : (
@@ -107,8 +83,8 @@ const History = () => {
     },
     {
       title: "Amount",
-      dataIndex: "amount",
-      key: "amount",
+      dataIndex: "amountPaid",
+      key: "amountPaid",
       align: "right" as const,
       render: (amount: number | null) => (amount ? `${amount} RWF` : "-"),
     },
@@ -123,25 +99,28 @@ const History = () => {
           <Paragraph type="secondary">Select a vehicle to filter records</Paragraph>
           <Select
             placeholder="All vehicles"
-            onChange={(val) => setSelectedVehicle(val)}
-            value={selectedVehicle}
+            onChange={(val) => setSelectedPlate(val)}
+            value={selectedPlate}
             style={{ width: 300 }}
             allowClear
+            loading={vehiclesLoading}
           >
-            {userVehicles.map((vehicle) => (
-              <Option key={vehicle.id} value={vehicle.id}>
-                {vehicle.plateNumber} - {vehicle.make} {vehicle.model}
+            {vehicles?.map((vehicle) => (
+              <Option key={vehicle.plateNumber} value={vehicle.plateNumber}>
+                {vehicle.plateNumber} - {vehicle.manufacturer} {vehicle.model}
               </Option>
             ))}
           </Select>
         </Card>
 
         <Card title="Parking Records">
-          {sortedRecords.length > 0 ? (
+          {recordsLoading ? (
+            <Paragraph>Loading records...</Paragraph>
+          ) : parkingRecords && parkingRecords.length > 0 ? (
             <>
               <Table
                 columns={columns}
-                dataSource={sortedRecords}
+                dataSource={parkingRecords}
                 rowKey="id"
                 pagination={false}
               />
@@ -154,7 +133,7 @@ const History = () => {
             <div style={{ textAlign: "center", padding: "2rem 0" }}>
               <Paragraph>No parking records found</Paragraph>
               <Paragraph type="secondary">
-                {selectedVehicle
+                {selectedPlate
                   ? "Try selecting a different vehicle or check-in your vehicle first."
                   : "Your parking history will appear here once you have parked your vehicle."}
               </Paragraph>

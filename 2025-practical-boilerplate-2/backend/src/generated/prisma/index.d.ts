@@ -18,6 +18,21 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Vehicle
+ * 
+ */
+export type Vehicle = $Result.DefaultSelection<Prisma.$VehiclePayload>
+/**
+ * Model ParkingLot
+ * 
+ */
+export type ParkingLot = $Result.DefaultSelection<Prisma.$ParkingLotPayload>
+/**
+ * Model ParkingRecord
+ * 
+ */
+export type ParkingRecord = $Result.DefaultSelection<Prisma.$ParkingRecordPayload>
 
 /**
  * Enums
@@ -170,6 +185,36 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.vehicle`: Exposes CRUD operations for the **Vehicle** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Vehicles
+    * const vehicles = await prisma.vehicle.findMany()
+    * ```
+    */
+  get vehicle(): Prisma.VehicleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.parkingLot`: Exposes CRUD operations for the **ParkingLot** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ParkingLots
+    * const parkingLots = await prisma.parkingLot.findMany()
+    * ```
+    */
+  get parkingLot(): Prisma.ParkingLotDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.parkingRecord`: Exposes CRUD operations for the **ParkingRecord** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ParkingRecords
+    * const parkingRecords = await prisma.parkingRecord.findMany()
+    * ```
+    */
+  get parkingRecord(): Prisma.ParkingRecordDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -610,7 +655,10 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    Vehicle: 'Vehicle',
+    ParkingLot: 'ParkingLot',
+    ParkingRecord: 'ParkingRecord'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -629,7 +677,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "vehicle" | "parkingLot" | "parkingRecord"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -704,6 +752,228 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Vehicle: {
+        payload: Prisma.$VehiclePayload<ExtArgs>
+        fields: Prisma.VehicleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VehicleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VehicleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          findFirst: {
+            args: Prisma.VehicleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VehicleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          findMany: {
+            args: Prisma.VehicleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>[]
+          }
+          create: {
+            args: Prisma.VehicleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          createMany: {
+            args: Prisma.VehicleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VehicleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>[]
+          }
+          delete: {
+            args: Prisma.VehicleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          update: {
+            args: Prisma.VehicleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          deleteMany: {
+            args: Prisma.VehicleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VehicleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VehicleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>[]
+          }
+          upsert: {
+            args: Prisma.VehicleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VehiclePayload>
+          }
+          aggregate: {
+            args: Prisma.VehicleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVehicle>
+          }
+          groupBy: {
+            args: Prisma.VehicleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VehicleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VehicleCountArgs<ExtArgs>
+            result: $Utils.Optional<VehicleCountAggregateOutputType> | number
+          }
+        }
+      }
+      ParkingLot: {
+        payload: Prisma.$ParkingLotPayload<ExtArgs>
+        fields: Prisma.ParkingLotFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ParkingLotFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ParkingLotFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload>
+          }
+          findFirst: {
+            args: Prisma.ParkingLotFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ParkingLotFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload>
+          }
+          findMany: {
+            args: Prisma.ParkingLotFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload>[]
+          }
+          create: {
+            args: Prisma.ParkingLotCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload>
+          }
+          createMany: {
+            args: Prisma.ParkingLotCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ParkingLotCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload>[]
+          }
+          delete: {
+            args: Prisma.ParkingLotDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload>
+          }
+          update: {
+            args: Prisma.ParkingLotUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload>
+          }
+          deleteMany: {
+            args: Prisma.ParkingLotDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ParkingLotUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ParkingLotUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload>[]
+          }
+          upsert: {
+            args: Prisma.ParkingLotUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingLotPayload>
+          }
+          aggregate: {
+            args: Prisma.ParkingLotAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateParkingLot>
+          }
+          groupBy: {
+            args: Prisma.ParkingLotGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ParkingLotGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ParkingLotCountArgs<ExtArgs>
+            result: $Utils.Optional<ParkingLotCountAggregateOutputType> | number
+          }
+        }
+      }
+      ParkingRecord: {
+        payload: Prisma.$ParkingRecordPayload<ExtArgs>
+        fields: Prisma.ParkingRecordFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ParkingRecordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ParkingRecordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload>
+          }
+          findFirst: {
+            args: Prisma.ParkingRecordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ParkingRecordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload>
+          }
+          findMany: {
+            args: Prisma.ParkingRecordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload>[]
+          }
+          create: {
+            args: Prisma.ParkingRecordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload>
+          }
+          createMany: {
+            args: Prisma.ParkingRecordCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ParkingRecordCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload>[]
+          }
+          delete: {
+            args: Prisma.ParkingRecordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload>
+          }
+          update: {
+            args: Prisma.ParkingRecordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload>
+          }
+          deleteMany: {
+            args: Prisma.ParkingRecordDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ParkingRecordUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ParkingRecordUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload>[]
+          }
+          upsert: {
+            args: Prisma.ParkingRecordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParkingRecordPayload>
+          }
+          aggregate: {
+            args: Prisma.ParkingRecordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateParkingRecord>
+          }
+          groupBy: {
+            args: Prisma.ParkingRecordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ParkingRecordGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ParkingRecordCountArgs<ExtArgs>
+            result: $Utils.Optional<ParkingRecordCountAggregateOutputType> | number
           }
         }
       }
@@ -792,6 +1062,9 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    vehicle?: VehicleOmit
+    parkingLot?: ParkingLotOmit
+    parkingRecord?: ParkingRecordOmit
   }
 
   /* Types for Logging */
@@ -881,6 +1154,98 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    vehicle: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehicle?: boolean | UserCountOutputTypeCountVehicleArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountVehicleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VehicleWhereInput
+  }
+
+
+  /**
+   * Count Type VehicleCountOutputType
+   */
+
+  export type VehicleCountOutputType = {
+    parkingRecords: number
+  }
+
+  export type VehicleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parkingRecords?: boolean | VehicleCountOutputTypeCountParkingRecordsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VehicleCountOutputType without action
+   */
+  export type VehicleCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VehicleCountOutputType
+     */
+    select?: VehicleCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VehicleCountOutputType without action
+   */
+  export type VehicleCountOutputTypeCountParkingRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParkingRecordWhereInput
+  }
+
+
+  /**
+   * Count Type ParkingLotCountOutputType
+   */
+
+  export type ParkingLotCountOutputType = {
+    parkingRecords: number
+  }
+
+  export type ParkingLotCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parkingRecords?: boolean | ParkingLotCountOutputTypeCountParkingRecordsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ParkingLotCountOutputType without action
+   */
+  export type ParkingLotCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLotCountOutputType
+     */
+    select?: ParkingLotCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ParkingLotCountOutputType without action
+   */
+  export type ParkingLotCountOutputTypeCountParkingRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParkingRecordWhereInput
+  }
+
 
   /**
    * Models
@@ -901,6 +1266,7 @@ export namespace Prisma {
     firstName: string | null
     lastName: string | null
     email: string | null
+    nationalId: string | null
     role: $Enums.Role | null
     password: string | null
     createdAt: Date | null
@@ -912,6 +1278,7 @@ export namespace Prisma {
     firstName: string | null
     lastName: string | null
     email: string | null
+    nationalId: string | null
     role: $Enums.Role | null
     password: string | null
     createdAt: Date | null
@@ -923,6 +1290,7 @@ export namespace Prisma {
     firstName: number
     lastName: number
     email: number
+    nationalId: number
     role: number
     password: number
     createdAt: number
@@ -936,6 +1304,7 @@ export namespace Prisma {
     firstName?: true
     lastName?: true
     email?: true
+    nationalId?: true
     role?: true
     password?: true
     createdAt?: true
@@ -947,6 +1316,7 @@ export namespace Prisma {
     firstName?: true
     lastName?: true
     email?: true
+    nationalId?: true
     role?: true
     password?: true
     createdAt?: true
@@ -958,6 +1328,7 @@ export namespace Prisma {
     firstName?: true
     lastName?: true
     email?: true
+    nationalId?: true
     role?: true
     password?: true
     createdAt?: true
@@ -1042,6 +1413,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     email: string
+    nationalId: string
     role: $Enums.Role
     password: string
     createdAt: Date
@@ -1070,10 +1442,13 @@ export namespace Prisma {
     firstName?: boolean
     lastName?: boolean
     email?: boolean
+    nationalId?: boolean
     role?: boolean
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    vehicle?: boolean | User$vehicleArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1081,6 +1456,7 @@ export namespace Prisma {
     firstName?: boolean
     lastName?: boolean
     email?: boolean
+    nationalId?: boolean
     role?: boolean
     password?: boolean
     createdAt?: boolean
@@ -1092,6 +1468,7 @@ export namespace Prisma {
     firstName?: boolean
     lastName?: boolean
     email?: boolean
+    nationalId?: boolean
     role?: boolean
     password?: boolean
     createdAt?: boolean
@@ -1103,22 +1480,32 @@ export namespace Prisma {
     firstName?: boolean
     lastName?: boolean
     email?: boolean
+    nationalId?: boolean
     role?: boolean
     password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "role" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "nationalId" | "role" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehicle?: boolean | User$vehicleArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      vehicle: Prisma.$VehiclePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       firstName: string
       lastName: string
       email: string
+      nationalId: string
       role: $Enums.Role
       password: string
       createdAt: Date
@@ -1517,6 +1904,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    vehicle<T extends User$vehicleArgs<ExtArgs> = {}>(args?: Subset<T, User$vehicleArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1550,6 +1938,7 @@ export namespace Prisma {
     readonly firstName: FieldRef<"User", 'String'>
     readonly lastName: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
+    readonly nationalId: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'Role'>
     readonly password: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
@@ -1571,6 +1960,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1589,6 +1982,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1606,6 +2003,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1655,6 +2056,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1703,6 +2108,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1745,6 +2154,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -1793,6 +2206,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1860,6 +2277,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1886,6 +2307,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -1906,6 +2331,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.vehicle
+   */
+  export type User$vehicleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    where?: VehicleWhereInput
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    cursor?: VehicleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VehicleScalarFieldEnum | VehicleScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1917,6 +2366,3368 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Vehicle
+   */
+
+  export type AggregateVehicle = {
+    _count: VehicleCountAggregateOutputType | null
+    _min: VehicleMinAggregateOutputType | null
+    _max: VehicleMaxAggregateOutputType | null
+  }
+
+  export type VehicleMinAggregateOutputType = {
+    id: string | null
+    plateNumber: string | null
+    manufacturer: string | null
+    model: string | null
+    color: string | null
+    userId: string | null
+  }
+
+  export type VehicleMaxAggregateOutputType = {
+    id: string | null
+    plateNumber: string | null
+    manufacturer: string | null
+    model: string | null
+    color: string | null
+    userId: string | null
+  }
+
+  export type VehicleCountAggregateOutputType = {
+    id: number
+    plateNumber: number
+    manufacturer: number
+    model: number
+    color: number
+    userId: number
+    _all: number
+  }
+
+
+  export type VehicleMinAggregateInputType = {
+    id?: true
+    plateNumber?: true
+    manufacturer?: true
+    model?: true
+    color?: true
+    userId?: true
+  }
+
+  export type VehicleMaxAggregateInputType = {
+    id?: true
+    plateNumber?: true
+    manufacturer?: true
+    model?: true
+    color?: true
+    userId?: true
+  }
+
+  export type VehicleCountAggregateInputType = {
+    id?: true
+    plateNumber?: true
+    manufacturer?: true
+    model?: true
+    color?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type VehicleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Vehicle to aggregate.
+     */
+    where?: VehicleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vehicles to fetch.
+     */
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VehicleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vehicles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vehicles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Vehicles
+    **/
+    _count?: true | VehicleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VehicleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VehicleMaxAggregateInputType
+  }
+
+  export type GetVehicleAggregateType<T extends VehicleAggregateArgs> = {
+        [P in keyof T & keyof AggregateVehicle]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVehicle[P]>
+      : GetScalarType<T[P], AggregateVehicle[P]>
+  }
+
+
+
+
+  export type VehicleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VehicleWhereInput
+    orderBy?: VehicleOrderByWithAggregationInput | VehicleOrderByWithAggregationInput[]
+    by: VehicleScalarFieldEnum[] | VehicleScalarFieldEnum
+    having?: VehicleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VehicleCountAggregateInputType | true
+    _min?: VehicleMinAggregateInputType
+    _max?: VehicleMaxAggregateInputType
+  }
+
+  export type VehicleGroupByOutputType = {
+    id: string
+    plateNumber: string
+    manufacturer: string
+    model: string
+    color: string
+    userId: string
+    _count: VehicleCountAggregateOutputType | null
+    _min: VehicleMinAggregateOutputType | null
+    _max: VehicleMaxAggregateOutputType | null
+  }
+
+  type GetVehicleGroupByPayload<T extends VehicleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VehicleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VehicleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VehicleGroupByOutputType[P]>
+            : GetScalarType<T[P], VehicleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VehicleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    plateNumber?: boolean
+    manufacturer?: boolean
+    model?: boolean
+    color?: boolean
+    userId?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    parkingRecords?: boolean | Vehicle$parkingRecordsArgs<ExtArgs>
+    _count?: boolean | VehicleCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vehicle"]>
+
+  export type VehicleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    plateNumber?: boolean
+    manufacturer?: boolean
+    model?: boolean
+    color?: boolean
+    userId?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vehicle"]>
+
+  export type VehicleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    plateNumber?: boolean
+    manufacturer?: boolean
+    model?: boolean
+    color?: boolean
+    userId?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vehicle"]>
+
+  export type VehicleSelectScalar = {
+    id?: boolean
+    plateNumber?: boolean
+    manufacturer?: boolean
+    model?: boolean
+    color?: boolean
+    userId?: boolean
+  }
+
+  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "plateNumber" | "manufacturer" | "model" | "color" | "userId", ExtArgs["result"]["vehicle"]>
+  export type VehicleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    parkingRecords?: boolean | Vehicle$parkingRecordsArgs<ExtArgs>
+    _count?: boolean | VehicleCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type VehicleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type VehicleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $VehiclePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Vehicle"
+    objects: {
+      owner: Prisma.$UserPayload<ExtArgs>
+      parkingRecords: Prisma.$ParkingRecordPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      plateNumber: string
+      manufacturer: string
+      model: string
+      color: string
+      userId: string
+    }, ExtArgs["result"]["vehicle"]>
+    composites: {}
+  }
+
+  type VehicleGetPayload<S extends boolean | null | undefined | VehicleDefaultArgs> = $Result.GetResult<Prisma.$VehiclePayload, S>
+
+  type VehicleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VehicleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VehicleCountAggregateInputType | true
+    }
+
+  export interface VehicleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Vehicle'], meta: { name: 'Vehicle' } }
+    /**
+     * Find zero or one Vehicle that matches the filter.
+     * @param {VehicleFindUniqueArgs} args - Arguments to find a Vehicle
+     * @example
+     * // Get one Vehicle
+     * const vehicle = await prisma.vehicle.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VehicleFindUniqueArgs>(args: SelectSubset<T, VehicleFindUniqueArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Vehicle that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VehicleFindUniqueOrThrowArgs} args - Arguments to find a Vehicle
+     * @example
+     * // Get one Vehicle
+     * const vehicle = await prisma.vehicle.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VehicleFindUniqueOrThrowArgs>(args: SelectSubset<T, VehicleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Vehicle that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleFindFirstArgs} args - Arguments to find a Vehicle
+     * @example
+     * // Get one Vehicle
+     * const vehicle = await prisma.vehicle.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VehicleFindFirstArgs>(args?: SelectSubset<T, VehicleFindFirstArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Vehicle that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleFindFirstOrThrowArgs} args - Arguments to find a Vehicle
+     * @example
+     * // Get one Vehicle
+     * const vehicle = await prisma.vehicle.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VehicleFindFirstOrThrowArgs>(args?: SelectSubset<T, VehicleFindFirstOrThrowArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Vehicles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Vehicles
+     * const vehicles = await prisma.vehicle.findMany()
+     * 
+     * // Get first 10 Vehicles
+     * const vehicles = await prisma.vehicle.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const vehicleWithIdOnly = await prisma.vehicle.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VehicleFindManyArgs>(args?: SelectSubset<T, VehicleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Vehicle.
+     * @param {VehicleCreateArgs} args - Arguments to create a Vehicle.
+     * @example
+     * // Create one Vehicle
+     * const Vehicle = await prisma.vehicle.create({
+     *   data: {
+     *     // ... data to create a Vehicle
+     *   }
+     * })
+     * 
+     */
+    create<T extends VehicleCreateArgs>(args: SelectSubset<T, VehicleCreateArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Vehicles.
+     * @param {VehicleCreateManyArgs} args - Arguments to create many Vehicles.
+     * @example
+     * // Create many Vehicles
+     * const vehicle = await prisma.vehicle.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VehicleCreateManyArgs>(args?: SelectSubset<T, VehicleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Vehicles and returns the data saved in the database.
+     * @param {VehicleCreateManyAndReturnArgs} args - Arguments to create many Vehicles.
+     * @example
+     * // Create many Vehicles
+     * const vehicle = await prisma.vehicle.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Vehicles and only return the `id`
+     * const vehicleWithIdOnly = await prisma.vehicle.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VehicleCreateManyAndReturnArgs>(args?: SelectSubset<T, VehicleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Vehicle.
+     * @param {VehicleDeleteArgs} args - Arguments to delete one Vehicle.
+     * @example
+     * // Delete one Vehicle
+     * const Vehicle = await prisma.vehicle.delete({
+     *   where: {
+     *     // ... filter to delete one Vehicle
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VehicleDeleteArgs>(args: SelectSubset<T, VehicleDeleteArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Vehicle.
+     * @param {VehicleUpdateArgs} args - Arguments to update one Vehicle.
+     * @example
+     * // Update one Vehicle
+     * const vehicle = await prisma.vehicle.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VehicleUpdateArgs>(args: SelectSubset<T, VehicleUpdateArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Vehicles.
+     * @param {VehicleDeleteManyArgs} args - Arguments to filter Vehicles to delete.
+     * @example
+     * // Delete a few Vehicles
+     * const { count } = await prisma.vehicle.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VehicleDeleteManyArgs>(args?: SelectSubset<T, VehicleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Vehicles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Vehicles
+     * const vehicle = await prisma.vehicle.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VehicleUpdateManyArgs>(args: SelectSubset<T, VehicleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Vehicles and returns the data updated in the database.
+     * @param {VehicleUpdateManyAndReturnArgs} args - Arguments to update many Vehicles.
+     * @example
+     * // Update many Vehicles
+     * const vehicle = await prisma.vehicle.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Vehicles and only return the `id`
+     * const vehicleWithIdOnly = await prisma.vehicle.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VehicleUpdateManyAndReturnArgs>(args: SelectSubset<T, VehicleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Vehicle.
+     * @param {VehicleUpsertArgs} args - Arguments to update or create a Vehicle.
+     * @example
+     * // Update or create a Vehicle
+     * const vehicle = await prisma.vehicle.upsert({
+     *   create: {
+     *     // ... data to create a Vehicle
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Vehicle we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VehicleUpsertArgs>(args: SelectSubset<T, VehicleUpsertArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Vehicles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleCountArgs} args - Arguments to filter Vehicles to count.
+     * @example
+     * // Count the number of Vehicles
+     * const count = await prisma.vehicle.count({
+     *   where: {
+     *     // ... the filter for the Vehicles we want to count
+     *   }
+     * })
+    **/
+    count<T extends VehicleCountArgs>(
+      args?: Subset<T, VehicleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VehicleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Vehicle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VehicleAggregateArgs>(args: Subset<T, VehicleAggregateArgs>): Prisma.PrismaPromise<GetVehicleAggregateType<T>>
+
+    /**
+     * Group by Vehicle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VehicleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VehicleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VehicleGroupByArgs['orderBy'] }
+        : { orderBy?: VehicleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VehicleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVehicleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Vehicle model
+   */
+  readonly fields: VehicleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Vehicle.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VehicleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parkingRecords<T extends Vehicle$parkingRecordsArgs<ExtArgs> = {}>(args?: Subset<T, Vehicle$parkingRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Vehicle model
+   */
+  interface VehicleFieldRefs {
+    readonly id: FieldRef<"Vehicle", 'String'>
+    readonly plateNumber: FieldRef<"Vehicle", 'String'>
+    readonly manufacturer: FieldRef<"Vehicle", 'String'>
+    readonly model: FieldRef<"Vehicle", 'String'>
+    readonly color: FieldRef<"Vehicle", 'String'>
+    readonly userId: FieldRef<"Vehicle", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Vehicle findUnique
+   */
+  export type VehicleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter, which Vehicle to fetch.
+     */
+    where: VehicleWhereUniqueInput
+  }
+
+  /**
+   * Vehicle findUniqueOrThrow
+   */
+  export type VehicleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter, which Vehicle to fetch.
+     */
+    where: VehicleWhereUniqueInput
+  }
+
+  /**
+   * Vehicle findFirst
+   */
+  export type VehicleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter, which Vehicle to fetch.
+     */
+    where?: VehicleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vehicles to fetch.
+     */
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Vehicles.
+     */
+    cursor?: VehicleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vehicles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vehicles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Vehicles.
+     */
+    distinct?: VehicleScalarFieldEnum | VehicleScalarFieldEnum[]
+  }
+
+  /**
+   * Vehicle findFirstOrThrow
+   */
+  export type VehicleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter, which Vehicle to fetch.
+     */
+    where?: VehicleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vehicles to fetch.
+     */
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Vehicles.
+     */
+    cursor?: VehicleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vehicles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vehicles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Vehicles.
+     */
+    distinct?: VehicleScalarFieldEnum | VehicleScalarFieldEnum[]
+  }
+
+  /**
+   * Vehicle findMany
+   */
+  export type VehicleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter, which Vehicles to fetch.
+     */
+    where?: VehicleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vehicles to fetch.
+     */
+    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Vehicles.
+     */
+    cursor?: VehicleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vehicles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vehicles.
+     */
+    skip?: number
+    distinct?: VehicleScalarFieldEnum | VehicleScalarFieldEnum[]
+  }
+
+  /**
+   * Vehicle create
+   */
+  export type VehicleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Vehicle.
+     */
+    data: XOR<VehicleCreateInput, VehicleUncheckedCreateInput>
+  }
+
+  /**
+   * Vehicle createMany
+   */
+  export type VehicleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Vehicles.
+     */
+    data: VehicleCreateManyInput | VehicleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Vehicle createManyAndReturn
+   */
+  export type VehicleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * The data used to create many Vehicles.
+     */
+    data: VehicleCreateManyInput | VehicleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Vehicle update
+   */
+  export type VehicleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Vehicle.
+     */
+    data: XOR<VehicleUpdateInput, VehicleUncheckedUpdateInput>
+    /**
+     * Choose, which Vehicle to update.
+     */
+    where: VehicleWhereUniqueInput
+  }
+
+  /**
+   * Vehicle updateMany
+   */
+  export type VehicleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Vehicles.
+     */
+    data: XOR<VehicleUpdateManyMutationInput, VehicleUncheckedUpdateManyInput>
+    /**
+     * Filter which Vehicles to update
+     */
+    where?: VehicleWhereInput
+    /**
+     * Limit how many Vehicles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Vehicle updateManyAndReturn
+   */
+  export type VehicleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * The data used to update Vehicles.
+     */
+    data: XOR<VehicleUpdateManyMutationInput, VehicleUncheckedUpdateManyInput>
+    /**
+     * Filter which Vehicles to update
+     */
+    where?: VehicleWhereInput
+    /**
+     * Limit how many Vehicles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Vehicle upsert
+   */
+  export type VehicleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Vehicle to update in case it exists.
+     */
+    where: VehicleWhereUniqueInput
+    /**
+     * In case the Vehicle found by the `where` argument doesn't exist, create a new Vehicle with this data.
+     */
+    create: XOR<VehicleCreateInput, VehicleUncheckedCreateInput>
+    /**
+     * In case the Vehicle was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VehicleUpdateInput, VehicleUncheckedUpdateInput>
+  }
+
+  /**
+   * Vehicle delete
+   */
+  export type VehicleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+    /**
+     * Filter which Vehicle to delete.
+     */
+    where: VehicleWhereUniqueInput
+  }
+
+  /**
+   * Vehicle deleteMany
+   */
+  export type VehicleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Vehicles to delete
+     */
+    where?: VehicleWhereInput
+    /**
+     * Limit how many Vehicles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Vehicle.parkingRecords
+   */
+  export type Vehicle$parkingRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    where?: ParkingRecordWhereInput
+    orderBy?: ParkingRecordOrderByWithRelationInput | ParkingRecordOrderByWithRelationInput[]
+    cursor?: ParkingRecordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ParkingRecordScalarFieldEnum | ParkingRecordScalarFieldEnum[]
+  }
+
+  /**
+   * Vehicle without action
+   */
+  export type VehicleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vehicle
+     */
+    select?: VehicleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vehicle
+     */
+    omit?: VehicleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VehicleInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ParkingLot
+   */
+
+  export type AggregateParkingLot = {
+    _count: ParkingLotCountAggregateOutputType | null
+    _avg: ParkingLotAvgAggregateOutputType | null
+    _sum: ParkingLotSumAggregateOutputType | null
+    _min: ParkingLotMinAggregateOutputType | null
+    _max: ParkingLotMaxAggregateOutputType | null
+  }
+
+  export type ParkingLotAvgAggregateOutputType = {
+    capacity: number | null
+    hourlyRate: number | null
+  }
+
+  export type ParkingLotSumAggregateOutputType = {
+    capacity: number | null
+    hourlyRate: number | null
+  }
+
+  export type ParkingLotMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    location: string | null
+    capacity: number | null
+    hourlyRate: number | null
+  }
+
+  export type ParkingLotMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    location: string | null
+    capacity: number | null
+    hourlyRate: number | null
+  }
+
+  export type ParkingLotCountAggregateOutputType = {
+    id: number
+    name: number
+    location: number
+    capacity: number
+    hourlyRate: number
+    _all: number
+  }
+
+
+  export type ParkingLotAvgAggregateInputType = {
+    capacity?: true
+    hourlyRate?: true
+  }
+
+  export type ParkingLotSumAggregateInputType = {
+    capacity?: true
+    hourlyRate?: true
+  }
+
+  export type ParkingLotMinAggregateInputType = {
+    id?: true
+    name?: true
+    location?: true
+    capacity?: true
+    hourlyRate?: true
+  }
+
+  export type ParkingLotMaxAggregateInputType = {
+    id?: true
+    name?: true
+    location?: true
+    capacity?: true
+    hourlyRate?: true
+  }
+
+  export type ParkingLotCountAggregateInputType = {
+    id?: true
+    name?: true
+    location?: true
+    capacity?: true
+    hourlyRate?: true
+    _all?: true
+  }
+
+  export type ParkingLotAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParkingLot to aggregate.
+     */
+    where?: ParkingLotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingLots to fetch.
+     */
+    orderBy?: ParkingLotOrderByWithRelationInput | ParkingLotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ParkingLotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingLots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingLots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ParkingLots
+    **/
+    _count?: true | ParkingLotCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ParkingLotAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ParkingLotSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ParkingLotMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ParkingLotMaxAggregateInputType
+  }
+
+  export type GetParkingLotAggregateType<T extends ParkingLotAggregateArgs> = {
+        [P in keyof T & keyof AggregateParkingLot]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateParkingLot[P]>
+      : GetScalarType<T[P], AggregateParkingLot[P]>
+  }
+
+
+
+
+  export type ParkingLotGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParkingLotWhereInput
+    orderBy?: ParkingLotOrderByWithAggregationInput | ParkingLotOrderByWithAggregationInput[]
+    by: ParkingLotScalarFieldEnum[] | ParkingLotScalarFieldEnum
+    having?: ParkingLotScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ParkingLotCountAggregateInputType | true
+    _avg?: ParkingLotAvgAggregateInputType
+    _sum?: ParkingLotSumAggregateInputType
+    _min?: ParkingLotMinAggregateInputType
+    _max?: ParkingLotMaxAggregateInputType
+  }
+
+  export type ParkingLotGroupByOutputType = {
+    id: string
+    name: string
+    location: string
+    capacity: number
+    hourlyRate: number
+    _count: ParkingLotCountAggregateOutputType | null
+    _avg: ParkingLotAvgAggregateOutputType | null
+    _sum: ParkingLotSumAggregateOutputType | null
+    _min: ParkingLotMinAggregateOutputType | null
+    _max: ParkingLotMaxAggregateOutputType | null
+  }
+
+  type GetParkingLotGroupByPayload<T extends ParkingLotGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ParkingLotGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ParkingLotGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ParkingLotGroupByOutputType[P]>
+            : GetScalarType<T[P], ParkingLotGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ParkingLotSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    location?: boolean
+    capacity?: boolean
+    hourlyRate?: boolean
+    parkingRecords?: boolean | ParkingLot$parkingRecordsArgs<ExtArgs>
+    _count?: boolean | ParkingLotCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parkingLot"]>
+
+  export type ParkingLotSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    location?: boolean
+    capacity?: boolean
+    hourlyRate?: boolean
+  }, ExtArgs["result"]["parkingLot"]>
+
+  export type ParkingLotSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    location?: boolean
+    capacity?: boolean
+    hourlyRate?: boolean
+  }, ExtArgs["result"]["parkingLot"]>
+
+  export type ParkingLotSelectScalar = {
+    id?: boolean
+    name?: boolean
+    location?: boolean
+    capacity?: boolean
+    hourlyRate?: boolean
+  }
+
+  export type ParkingLotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "location" | "capacity" | "hourlyRate", ExtArgs["result"]["parkingLot"]>
+  export type ParkingLotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parkingRecords?: boolean | ParkingLot$parkingRecordsArgs<ExtArgs>
+    _count?: boolean | ParkingLotCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ParkingLotIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ParkingLotIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ParkingLotPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ParkingLot"
+    objects: {
+      parkingRecords: Prisma.$ParkingRecordPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      location: string
+      capacity: number
+      hourlyRate: number
+    }, ExtArgs["result"]["parkingLot"]>
+    composites: {}
+  }
+
+  type ParkingLotGetPayload<S extends boolean | null | undefined | ParkingLotDefaultArgs> = $Result.GetResult<Prisma.$ParkingLotPayload, S>
+
+  type ParkingLotCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ParkingLotFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ParkingLotCountAggregateInputType | true
+    }
+
+  export interface ParkingLotDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ParkingLot'], meta: { name: 'ParkingLot' } }
+    /**
+     * Find zero or one ParkingLot that matches the filter.
+     * @param {ParkingLotFindUniqueArgs} args - Arguments to find a ParkingLot
+     * @example
+     * // Get one ParkingLot
+     * const parkingLot = await prisma.parkingLot.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ParkingLotFindUniqueArgs>(args: SelectSubset<T, ParkingLotFindUniqueArgs<ExtArgs>>): Prisma__ParkingLotClient<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ParkingLot that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ParkingLotFindUniqueOrThrowArgs} args - Arguments to find a ParkingLot
+     * @example
+     * // Get one ParkingLot
+     * const parkingLot = await prisma.parkingLot.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ParkingLotFindUniqueOrThrowArgs>(args: SelectSubset<T, ParkingLotFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ParkingLotClient<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParkingLot that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLotFindFirstArgs} args - Arguments to find a ParkingLot
+     * @example
+     * // Get one ParkingLot
+     * const parkingLot = await prisma.parkingLot.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ParkingLotFindFirstArgs>(args?: SelectSubset<T, ParkingLotFindFirstArgs<ExtArgs>>): Prisma__ParkingLotClient<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParkingLot that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLotFindFirstOrThrowArgs} args - Arguments to find a ParkingLot
+     * @example
+     * // Get one ParkingLot
+     * const parkingLot = await prisma.parkingLot.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ParkingLotFindFirstOrThrowArgs>(args?: SelectSubset<T, ParkingLotFindFirstOrThrowArgs<ExtArgs>>): Prisma__ParkingLotClient<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ParkingLots that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLotFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ParkingLots
+     * const parkingLots = await prisma.parkingLot.findMany()
+     * 
+     * // Get first 10 ParkingLots
+     * const parkingLots = await prisma.parkingLot.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const parkingLotWithIdOnly = await prisma.parkingLot.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ParkingLotFindManyArgs>(args?: SelectSubset<T, ParkingLotFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ParkingLot.
+     * @param {ParkingLotCreateArgs} args - Arguments to create a ParkingLot.
+     * @example
+     * // Create one ParkingLot
+     * const ParkingLot = await prisma.parkingLot.create({
+     *   data: {
+     *     // ... data to create a ParkingLot
+     *   }
+     * })
+     * 
+     */
+    create<T extends ParkingLotCreateArgs>(args: SelectSubset<T, ParkingLotCreateArgs<ExtArgs>>): Prisma__ParkingLotClient<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ParkingLots.
+     * @param {ParkingLotCreateManyArgs} args - Arguments to create many ParkingLots.
+     * @example
+     * // Create many ParkingLots
+     * const parkingLot = await prisma.parkingLot.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ParkingLotCreateManyArgs>(args?: SelectSubset<T, ParkingLotCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ParkingLots and returns the data saved in the database.
+     * @param {ParkingLotCreateManyAndReturnArgs} args - Arguments to create many ParkingLots.
+     * @example
+     * // Create many ParkingLots
+     * const parkingLot = await prisma.parkingLot.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ParkingLots and only return the `id`
+     * const parkingLotWithIdOnly = await prisma.parkingLot.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ParkingLotCreateManyAndReturnArgs>(args?: SelectSubset<T, ParkingLotCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ParkingLot.
+     * @param {ParkingLotDeleteArgs} args - Arguments to delete one ParkingLot.
+     * @example
+     * // Delete one ParkingLot
+     * const ParkingLot = await prisma.parkingLot.delete({
+     *   where: {
+     *     // ... filter to delete one ParkingLot
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ParkingLotDeleteArgs>(args: SelectSubset<T, ParkingLotDeleteArgs<ExtArgs>>): Prisma__ParkingLotClient<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ParkingLot.
+     * @param {ParkingLotUpdateArgs} args - Arguments to update one ParkingLot.
+     * @example
+     * // Update one ParkingLot
+     * const parkingLot = await prisma.parkingLot.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ParkingLotUpdateArgs>(args: SelectSubset<T, ParkingLotUpdateArgs<ExtArgs>>): Prisma__ParkingLotClient<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ParkingLots.
+     * @param {ParkingLotDeleteManyArgs} args - Arguments to filter ParkingLots to delete.
+     * @example
+     * // Delete a few ParkingLots
+     * const { count } = await prisma.parkingLot.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ParkingLotDeleteManyArgs>(args?: SelectSubset<T, ParkingLotDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParkingLots.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLotUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ParkingLots
+     * const parkingLot = await prisma.parkingLot.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ParkingLotUpdateManyArgs>(args: SelectSubset<T, ParkingLotUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParkingLots and returns the data updated in the database.
+     * @param {ParkingLotUpdateManyAndReturnArgs} args - Arguments to update many ParkingLots.
+     * @example
+     * // Update many ParkingLots
+     * const parkingLot = await prisma.parkingLot.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ParkingLots and only return the `id`
+     * const parkingLotWithIdOnly = await prisma.parkingLot.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ParkingLotUpdateManyAndReturnArgs>(args: SelectSubset<T, ParkingLotUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ParkingLot.
+     * @param {ParkingLotUpsertArgs} args - Arguments to update or create a ParkingLot.
+     * @example
+     * // Update or create a ParkingLot
+     * const parkingLot = await prisma.parkingLot.upsert({
+     *   create: {
+     *     // ... data to create a ParkingLot
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ParkingLot we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ParkingLotUpsertArgs>(args: SelectSubset<T, ParkingLotUpsertArgs<ExtArgs>>): Prisma__ParkingLotClient<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ParkingLots.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLotCountArgs} args - Arguments to filter ParkingLots to count.
+     * @example
+     * // Count the number of ParkingLots
+     * const count = await prisma.parkingLot.count({
+     *   where: {
+     *     // ... the filter for the ParkingLots we want to count
+     *   }
+     * })
+    **/
+    count<T extends ParkingLotCountArgs>(
+      args?: Subset<T, ParkingLotCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ParkingLotCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ParkingLot.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLotAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ParkingLotAggregateArgs>(args: Subset<T, ParkingLotAggregateArgs>): Prisma.PrismaPromise<GetParkingLotAggregateType<T>>
+
+    /**
+     * Group by ParkingLot.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingLotGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ParkingLotGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ParkingLotGroupByArgs['orderBy'] }
+        : { orderBy?: ParkingLotGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ParkingLotGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetParkingLotGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ParkingLot model
+   */
+  readonly fields: ParkingLotFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ParkingLot.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ParkingLotClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    parkingRecords<T extends ParkingLot$parkingRecordsArgs<ExtArgs> = {}>(args?: Subset<T, ParkingLot$parkingRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ParkingLot model
+   */
+  interface ParkingLotFieldRefs {
+    readonly id: FieldRef<"ParkingLot", 'String'>
+    readonly name: FieldRef<"ParkingLot", 'String'>
+    readonly location: FieldRef<"ParkingLot", 'String'>
+    readonly capacity: FieldRef<"ParkingLot", 'Int'>
+    readonly hourlyRate: FieldRef<"ParkingLot", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ParkingLot findUnique
+   */
+  export type ParkingLotFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingLot to fetch.
+     */
+    where: ParkingLotWhereUniqueInput
+  }
+
+  /**
+   * ParkingLot findUniqueOrThrow
+   */
+  export type ParkingLotFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingLot to fetch.
+     */
+    where: ParkingLotWhereUniqueInput
+  }
+
+  /**
+   * ParkingLot findFirst
+   */
+  export type ParkingLotFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingLot to fetch.
+     */
+    where?: ParkingLotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingLots to fetch.
+     */
+    orderBy?: ParkingLotOrderByWithRelationInput | ParkingLotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParkingLots.
+     */
+    cursor?: ParkingLotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingLots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingLots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParkingLots.
+     */
+    distinct?: ParkingLotScalarFieldEnum | ParkingLotScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLot findFirstOrThrow
+   */
+  export type ParkingLotFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingLot to fetch.
+     */
+    where?: ParkingLotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingLots to fetch.
+     */
+    orderBy?: ParkingLotOrderByWithRelationInput | ParkingLotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParkingLots.
+     */
+    cursor?: ParkingLotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingLots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingLots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParkingLots.
+     */
+    distinct?: ParkingLotScalarFieldEnum | ParkingLotScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLot findMany
+   */
+  export type ParkingLotFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingLots to fetch.
+     */
+    where?: ParkingLotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingLots to fetch.
+     */
+    orderBy?: ParkingLotOrderByWithRelationInput | ParkingLotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ParkingLots.
+     */
+    cursor?: ParkingLotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingLots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingLots.
+     */
+    skip?: number
+    distinct?: ParkingLotScalarFieldEnum | ParkingLotScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLot create
+   */
+  export type ParkingLotCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ParkingLot.
+     */
+    data: XOR<ParkingLotCreateInput, ParkingLotUncheckedCreateInput>
+  }
+
+  /**
+   * ParkingLot createMany
+   */
+  export type ParkingLotCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ParkingLots.
+     */
+    data: ParkingLotCreateManyInput | ParkingLotCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ParkingLot createManyAndReturn
+   */
+  export type ParkingLotCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * The data used to create many ParkingLots.
+     */
+    data: ParkingLotCreateManyInput | ParkingLotCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ParkingLot update
+   */
+  export type ParkingLotUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ParkingLot.
+     */
+    data: XOR<ParkingLotUpdateInput, ParkingLotUncheckedUpdateInput>
+    /**
+     * Choose, which ParkingLot to update.
+     */
+    where: ParkingLotWhereUniqueInput
+  }
+
+  /**
+   * ParkingLot updateMany
+   */
+  export type ParkingLotUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ParkingLots.
+     */
+    data: XOR<ParkingLotUpdateManyMutationInput, ParkingLotUncheckedUpdateManyInput>
+    /**
+     * Filter which ParkingLots to update
+     */
+    where?: ParkingLotWhereInput
+    /**
+     * Limit how many ParkingLots to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParkingLot updateManyAndReturn
+   */
+  export type ParkingLotUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * The data used to update ParkingLots.
+     */
+    data: XOR<ParkingLotUpdateManyMutationInput, ParkingLotUncheckedUpdateManyInput>
+    /**
+     * Filter which ParkingLots to update
+     */
+    where?: ParkingLotWhereInput
+    /**
+     * Limit how many ParkingLots to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParkingLot upsert
+   */
+  export type ParkingLotUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ParkingLot to update in case it exists.
+     */
+    where: ParkingLotWhereUniqueInput
+    /**
+     * In case the ParkingLot found by the `where` argument doesn't exist, create a new ParkingLot with this data.
+     */
+    create: XOR<ParkingLotCreateInput, ParkingLotUncheckedCreateInput>
+    /**
+     * In case the ParkingLot was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ParkingLotUpdateInput, ParkingLotUncheckedUpdateInput>
+  }
+
+  /**
+   * ParkingLot delete
+   */
+  export type ParkingLotDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+    /**
+     * Filter which ParkingLot to delete.
+     */
+    where: ParkingLotWhereUniqueInput
+  }
+
+  /**
+   * ParkingLot deleteMany
+   */
+  export type ParkingLotDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParkingLots to delete
+     */
+    where?: ParkingLotWhereInput
+    /**
+     * Limit how many ParkingLots to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParkingLot.parkingRecords
+   */
+  export type ParkingLot$parkingRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    where?: ParkingRecordWhereInput
+    orderBy?: ParkingRecordOrderByWithRelationInput | ParkingRecordOrderByWithRelationInput[]
+    cursor?: ParkingRecordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ParkingRecordScalarFieldEnum | ParkingRecordScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingLot without action
+   */
+  export type ParkingLotDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ParkingRecord
+   */
+
+  export type AggregateParkingRecord = {
+    _count: ParkingRecordCountAggregateOutputType | null
+    _avg: ParkingRecordAvgAggregateOutputType | null
+    _sum: ParkingRecordSumAggregateOutputType | null
+    _min: ParkingRecordMinAggregateOutputType | null
+    _max: ParkingRecordMaxAggregateOutputType | null
+  }
+
+  export type ParkingRecordAvgAggregateOutputType = {
+    duration: number | null
+    amountPaid: number | null
+  }
+
+  export type ParkingRecordSumAggregateOutputType = {
+    duration: bigint | null
+    amountPaid: number | null
+  }
+
+  export type ParkingRecordMinAggregateOutputType = {
+    id: string | null
+    checkInTime: Date | null
+    checkOutTime: Date | null
+    duration: bigint | null
+    amountPaid: number | null
+    vehicleId: string | null
+    parkingLotId: string | null
+  }
+
+  export type ParkingRecordMaxAggregateOutputType = {
+    id: string | null
+    checkInTime: Date | null
+    checkOutTime: Date | null
+    duration: bigint | null
+    amountPaid: number | null
+    vehicleId: string | null
+    parkingLotId: string | null
+  }
+
+  export type ParkingRecordCountAggregateOutputType = {
+    id: number
+    checkInTime: number
+    checkOutTime: number
+    duration: number
+    amountPaid: number
+    vehicleId: number
+    parkingLotId: number
+    _all: number
+  }
+
+
+  export type ParkingRecordAvgAggregateInputType = {
+    duration?: true
+    amountPaid?: true
+  }
+
+  export type ParkingRecordSumAggregateInputType = {
+    duration?: true
+    amountPaid?: true
+  }
+
+  export type ParkingRecordMinAggregateInputType = {
+    id?: true
+    checkInTime?: true
+    checkOutTime?: true
+    duration?: true
+    amountPaid?: true
+    vehicleId?: true
+    parkingLotId?: true
+  }
+
+  export type ParkingRecordMaxAggregateInputType = {
+    id?: true
+    checkInTime?: true
+    checkOutTime?: true
+    duration?: true
+    amountPaid?: true
+    vehicleId?: true
+    parkingLotId?: true
+  }
+
+  export type ParkingRecordCountAggregateInputType = {
+    id?: true
+    checkInTime?: true
+    checkOutTime?: true
+    duration?: true
+    amountPaid?: true
+    vehicleId?: true
+    parkingLotId?: true
+    _all?: true
+  }
+
+  export type ParkingRecordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParkingRecord to aggregate.
+     */
+    where?: ParkingRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingRecords to fetch.
+     */
+    orderBy?: ParkingRecordOrderByWithRelationInput | ParkingRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ParkingRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ParkingRecords
+    **/
+    _count?: true | ParkingRecordCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ParkingRecordAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ParkingRecordSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ParkingRecordMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ParkingRecordMaxAggregateInputType
+  }
+
+  export type GetParkingRecordAggregateType<T extends ParkingRecordAggregateArgs> = {
+        [P in keyof T & keyof AggregateParkingRecord]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateParkingRecord[P]>
+      : GetScalarType<T[P], AggregateParkingRecord[P]>
+  }
+
+
+
+
+  export type ParkingRecordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParkingRecordWhereInput
+    orderBy?: ParkingRecordOrderByWithAggregationInput | ParkingRecordOrderByWithAggregationInput[]
+    by: ParkingRecordScalarFieldEnum[] | ParkingRecordScalarFieldEnum
+    having?: ParkingRecordScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ParkingRecordCountAggregateInputType | true
+    _avg?: ParkingRecordAvgAggregateInputType
+    _sum?: ParkingRecordSumAggregateInputType
+    _min?: ParkingRecordMinAggregateInputType
+    _max?: ParkingRecordMaxAggregateInputType
+  }
+
+  export type ParkingRecordGroupByOutputType = {
+    id: string
+    checkInTime: Date
+    checkOutTime: Date | null
+    duration: bigint | null
+    amountPaid: number | null
+    vehicleId: string
+    parkingLotId: string | null
+    _count: ParkingRecordCountAggregateOutputType | null
+    _avg: ParkingRecordAvgAggregateOutputType | null
+    _sum: ParkingRecordSumAggregateOutputType | null
+    _min: ParkingRecordMinAggregateOutputType | null
+    _max: ParkingRecordMaxAggregateOutputType | null
+  }
+
+  type GetParkingRecordGroupByPayload<T extends ParkingRecordGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ParkingRecordGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ParkingRecordGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ParkingRecordGroupByOutputType[P]>
+            : GetScalarType<T[P], ParkingRecordGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ParkingRecordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    checkInTime?: boolean
+    checkOutTime?: boolean
+    duration?: boolean
+    amountPaid?: boolean
+    vehicleId?: boolean
+    parkingLotId?: boolean
+    vehicle?: boolean | VehicleDefaultArgs<ExtArgs>
+    parkingLot?: boolean | ParkingRecord$parkingLotArgs<ExtArgs>
+  }, ExtArgs["result"]["parkingRecord"]>
+
+  export type ParkingRecordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    checkInTime?: boolean
+    checkOutTime?: boolean
+    duration?: boolean
+    amountPaid?: boolean
+    vehicleId?: boolean
+    parkingLotId?: boolean
+    vehicle?: boolean | VehicleDefaultArgs<ExtArgs>
+    parkingLot?: boolean | ParkingRecord$parkingLotArgs<ExtArgs>
+  }, ExtArgs["result"]["parkingRecord"]>
+
+  export type ParkingRecordSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    checkInTime?: boolean
+    checkOutTime?: boolean
+    duration?: boolean
+    amountPaid?: boolean
+    vehicleId?: boolean
+    parkingLotId?: boolean
+    vehicle?: boolean | VehicleDefaultArgs<ExtArgs>
+    parkingLot?: boolean | ParkingRecord$parkingLotArgs<ExtArgs>
+  }, ExtArgs["result"]["parkingRecord"]>
+
+  export type ParkingRecordSelectScalar = {
+    id?: boolean
+    checkInTime?: boolean
+    checkOutTime?: boolean
+    duration?: boolean
+    amountPaid?: boolean
+    vehicleId?: boolean
+    parkingLotId?: boolean
+  }
+
+  export type ParkingRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "checkInTime" | "checkOutTime" | "duration" | "amountPaid" | "vehicleId" | "parkingLotId", ExtArgs["result"]["parkingRecord"]>
+  export type ParkingRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehicle?: boolean | VehicleDefaultArgs<ExtArgs>
+    parkingLot?: boolean | ParkingRecord$parkingLotArgs<ExtArgs>
+  }
+  export type ParkingRecordIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehicle?: boolean | VehicleDefaultArgs<ExtArgs>
+    parkingLot?: boolean | ParkingRecord$parkingLotArgs<ExtArgs>
+  }
+  export type ParkingRecordIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehicle?: boolean | VehicleDefaultArgs<ExtArgs>
+    parkingLot?: boolean | ParkingRecord$parkingLotArgs<ExtArgs>
+  }
+
+  export type $ParkingRecordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ParkingRecord"
+    objects: {
+      vehicle: Prisma.$VehiclePayload<ExtArgs>
+      parkingLot: Prisma.$ParkingLotPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      checkInTime: Date
+      checkOutTime: Date | null
+      duration: bigint | null
+      amountPaid: number | null
+      vehicleId: string
+      parkingLotId: string | null
+    }, ExtArgs["result"]["parkingRecord"]>
+    composites: {}
+  }
+
+  type ParkingRecordGetPayload<S extends boolean | null | undefined | ParkingRecordDefaultArgs> = $Result.GetResult<Prisma.$ParkingRecordPayload, S>
+
+  type ParkingRecordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ParkingRecordFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ParkingRecordCountAggregateInputType | true
+    }
+
+  export interface ParkingRecordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ParkingRecord'], meta: { name: 'ParkingRecord' } }
+    /**
+     * Find zero or one ParkingRecord that matches the filter.
+     * @param {ParkingRecordFindUniqueArgs} args - Arguments to find a ParkingRecord
+     * @example
+     * // Get one ParkingRecord
+     * const parkingRecord = await prisma.parkingRecord.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ParkingRecordFindUniqueArgs>(args: SelectSubset<T, ParkingRecordFindUniqueArgs<ExtArgs>>): Prisma__ParkingRecordClient<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ParkingRecord that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ParkingRecordFindUniqueOrThrowArgs} args - Arguments to find a ParkingRecord
+     * @example
+     * // Get one ParkingRecord
+     * const parkingRecord = await prisma.parkingRecord.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ParkingRecordFindUniqueOrThrowArgs>(args: SelectSubset<T, ParkingRecordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ParkingRecordClient<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParkingRecord that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingRecordFindFirstArgs} args - Arguments to find a ParkingRecord
+     * @example
+     * // Get one ParkingRecord
+     * const parkingRecord = await prisma.parkingRecord.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ParkingRecordFindFirstArgs>(args?: SelectSubset<T, ParkingRecordFindFirstArgs<ExtArgs>>): Prisma__ParkingRecordClient<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParkingRecord that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingRecordFindFirstOrThrowArgs} args - Arguments to find a ParkingRecord
+     * @example
+     * // Get one ParkingRecord
+     * const parkingRecord = await prisma.parkingRecord.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ParkingRecordFindFirstOrThrowArgs>(args?: SelectSubset<T, ParkingRecordFindFirstOrThrowArgs<ExtArgs>>): Prisma__ParkingRecordClient<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ParkingRecords that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingRecordFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ParkingRecords
+     * const parkingRecords = await prisma.parkingRecord.findMany()
+     * 
+     * // Get first 10 ParkingRecords
+     * const parkingRecords = await prisma.parkingRecord.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const parkingRecordWithIdOnly = await prisma.parkingRecord.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ParkingRecordFindManyArgs>(args?: SelectSubset<T, ParkingRecordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ParkingRecord.
+     * @param {ParkingRecordCreateArgs} args - Arguments to create a ParkingRecord.
+     * @example
+     * // Create one ParkingRecord
+     * const ParkingRecord = await prisma.parkingRecord.create({
+     *   data: {
+     *     // ... data to create a ParkingRecord
+     *   }
+     * })
+     * 
+     */
+    create<T extends ParkingRecordCreateArgs>(args: SelectSubset<T, ParkingRecordCreateArgs<ExtArgs>>): Prisma__ParkingRecordClient<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ParkingRecords.
+     * @param {ParkingRecordCreateManyArgs} args - Arguments to create many ParkingRecords.
+     * @example
+     * // Create many ParkingRecords
+     * const parkingRecord = await prisma.parkingRecord.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ParkingRecordCreateManyArgs>(args?: SelectSubset<T, ParkingRecordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ParkingRecords and returns the data saved in the database.
+     * @param {ParkingRecordCreateManyAndReturnArgs} args - Arguments to create many ParkingRecords.
+     * @example
+     * // Create many ParkingRecords
+     * const parkingRecord = await prisma.parkingRecord.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ParkingRecords and only return the `id`
+     * const parkingRecordWithIdOnly = await prisma.parkingRecord.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ParkingRecordCreateManyAndReturnArgs>(args?: SelectSubset<T, ParkingRecordCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ParkingRecord.
+     * @param {ParkingRecordDeleteArgs} args - Arguments to delete one ParkingRecord.
+     * @example
+     * // Delete one ParkingRecord
+     * const ParkingRecord = await prisma.parkingRecord.delete({
+     *   where: {
+     *     // ... filter to delete one ParkingRecord
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ParkingRecordDeleteArgs>(args: SelectSubset<T, ParkingRecordDeleteArgs<ExtArgs>>): Prisma__ParkingRecordClient<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ParkingRecord.
+     * @param {ParkingRecordUpdateArgs} args - Arguments to update one ParkingRecord.
+     * @example
+     * // Update one ParkingRecord
+     * const parkingRecord = await prisma.parkingRecord.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ParkingRecordUpdateArgs>(args: SelectSubset<T, ParkingRecordUpdateArgs<ExtArgs>>): Prisma__ParkingRecordClient<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ParkingRecords.
+     * @param {ParkingRecordDeleteManyArgs} args - Arguments to filter ParkingRecords to delete.
+     * @example
+     * // Delete a few ParkingRecords
+     * const { count } = await prisma.parkingRecord.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ParkingRecordDeleteManyArgs>(args?: SelectSubset<T, ParkingRecordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParkingRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingRecordUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ParkingRecords
+     * const parkingRecord = await prisma.parkingRecord.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ParkingRecordUpdateManyArgs>(args: SelectSubset<T, ParkingRecordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParkingRecords and returns the data updated in the database.
+     * @param {ParkingRecordUpdateManyAndReturnArgs} args - Arguments to update many ParkingRecords.
+     * @example
+     * // Update many ParkingRecords
+     * const parkingRecord = await prisma.parkingRecord.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ParkingRecords and only return the `id`
+     * const parkingRecordWithIdOnly = await prisma.parkingRecord.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ParkingRecordUpdateManyAndReturnArgs>(args: SelectSubset<T, ParkingRecordUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ParkingRecord.
+     * @param {ParkingRecordUpsertArgs} args - Arguments to update or create a ParkingRecord.
+     * @example
+     * // Update or create a ParkingRecord
+     * const parkingRecord = await prisma.parkingRecord.upsert({
+     *   create: {
+     *     // ... data to create a ParkingRecord
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ParkingRecord we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ParkingRecordUpsertArgs>(args: SelectSubset<T, ParkingRecordUpsertArgs<ExtArgs>>): Prisma__ParkingRecordClient<$Result.GetResult<Prisma.$ParkingRecordPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ParkingRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingRecordCountArgs} args - Arguments to filter ParkingRecords to count.
+     * @example
+     * // Count the number of ParkingRecords
+     * const count = await prisma.parkingRecord.count({
+     *   where: {
+     *     // ... the filter for the ParkingRecords we want to count
+     *   }
+     * })
+    **/
+    count<T extends ParkingRecordCountArgs>(
+      args?: Subset<T, ParkingRecordCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ParkingRecordCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ParkingRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingRecordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ParkingRecordAggregateArgs>(args: Subset<T, ParkingRecordAggregateArgs>): Prisma.PrismaPromise<GetParkingRecordAggregateType<T>>
+
+    /**
+     * Group by ParkingRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParkingRecordGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ParkingRecordGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ParkingRecordGroupByArgs['orderBy'] }
+        : { orderBy?: ParkingRecordGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ParkingRecordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetParkingRecordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ParkingRecord model
+   */
+  readonly fields: ParkingRecordFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ParkingRecord.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ParkingRecordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vehicle<T extends VehicleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VehicleDefaultArgs<ExtArgs>>): Prisma__VehicleClient<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parkingLot<T extends ParkingRecord$parkingLotArgs<ExtArgs> = {}>(args?: Subset<T, ParkingRecord$parkingLotArgs<ExtArgs>>): Prisma__ParkingLotClient<$Result.GetResult<Prisma.$ParkingLotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ParkingRecord model
+   */
+  interface ParkingRecordFieldRefs {
+    readonly id: FieldRef<"ParkingRecord", 'String'>
+    readonly checkInTime: FieldRef<"ParkingRecord", 'DateTime'>
+    readonly checkOutTime: FieldRef<"ParkingRecord", 'DateTime'>
+    readonly duration: FieldRef<"ParkingRecord", 'BigInt'>
+    readonly amountPaid: FieldRef<"ParkingRecord", 'Float'>
+    readonly vehicleId: FieldRef<"ParkingRecord", 'String'>
+    readonly parkingLotId: FieldRef<"ParkingRecord", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ParkingRecord findUnique
+   */
+  export type ParkingRecordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingRecord to fetch.
+     */
+    where: ParkingRecordWhereUniqueInput
+  }
+
+  /**
+   * ParkingRecord findUniqueOrThrow
+   */
+  export type ParkingRecordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingRecord to fetch.
+     */
+    where: ParkingRecordWhereUniqueInput
+  }
+
+  /**
+   * ParkingRecord findFirst
+   */
+  export type ParkingRecordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingRecord to fetch.
+     */
+    where?: ParkingRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingRecords to fetch.
+     */
+    orderBy?: ParkingRecordOrderByWithRelationInput | ParkingRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParkingRecords.
+     */
+    cursor?: ParkingRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParkingRecords.
+     */
+    distinct?: ParkingRecordScalarFieldEnum | ParkingRecordScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingRecord findFirstOrThrow
+   */
+  export type ParkingRecordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingRecord to fetch.
+     */
+    where?: ParkingRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingRecords to fetch.
+     */
+    orderBy?: ParkingRecordOrderByWithRelationInput | ParkingRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParkingRecords.
+     */
+    cursor?: ParkingRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParkingRecords.
+     */
+    distinct?: ParkingRecordScalarFieldEnum | ParkingRecordScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingRecord findMany
+   */
+  export type ParkingRecordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which ParkingRecords to fetch.
+     */
+    where?: ParkingRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParkingRecords to fetch.
+     */
+    orderBy?: ParkingRecordOrderByWithRelationInput | ParkingRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ParkingRecords.
+     */
+    cursor?: ParkingRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParkingRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParkingRecords.
+     */
+    skip?: number
+    distinct?: ParkingRecordScalarFieldEnum | ParkingRecordScalarFieldEnum[]
+  }
+
+  /**
+   * ParkingRecord create
+   */
+  export type ParkingRecordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ParkingRecord.
+     */
+    data: XOR<ParkingRecordCreateInput, ParkingRecordUncheckedCreateInput>
+  }
+
+  /**
+   * ParkingRecord createMany
+   */
+  export type ParkingRecordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ParkingRecords.
+     */
+    data: ParkingRecordCreateManyInput | ParkingRecordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ParkingRecord createManyAndReturn
+   */
+  export type ParkingRecordCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * The data used to create many ParkingRecords.
+     */
+    data: ParkingRecordCreateManyInput | ParkingRecordCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ParkingRecord update
+   */
+  export type ParkingRecordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ParkingRecord.
+     */
+    data: XOR<ParkingRecordUpdateInput, ParkingRecordUncheckedUpdateInput>
+    /**
+     * Choose, which ParkingRecord to update.
+     */
+    where: ParkingRecordWhereUniqueInput
+  }
+
+  /**
+   * ParkingRecord updateMany
+   */
+  export type ParkingRecordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ParkingRecords.
+     */
+    data: XOR<ParkingRecordUpdateManyMutationInput, ParkingRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which ParkingRecords to update
+     */
+    where?: ParkingRecordWhereInput
+    /**
+     * Limit how many ParkingRecords to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParkingRecord updateManyAndReturn
+   */
+  export type ParkingRecordUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * The data used to update ParkingRecords.
+     */
+    data: XOR<ParkingRecordUpdateManyMutationInput, ParkingRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which ParkingRecords to update
+     */
+    where?: ParkingRecordWhereInput
+    /**
+     * Limit how many ParkingRecords to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ParkingRecord upsert
+   */
+  export type ParkingRecordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ParkingRecord to update in case it exists.
+     */
+    where: ParkingRecordWhereUniqueInput
+    /**
+     * In case the ParkingRecord found by the `where` argument doesn't exist, create a new ParkingRecord with this data.
+     */
+    create: XOR<ParkingRecordCreateInput, ParkingRecordUncheckedCreateInput>
+    /**
+     * In case the ParkingRecord was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ParkingRecordUpdateInput, ParkingRecordUncheckedUpdateInput>
+  }
+
+  /**
+   * ParkingRecord delete
+   */
+  export type ParkingRecordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
+    /**
+     * Filter which ParkingRecord to delete.
+     */
+    where: ParkingRecordWhereUniqueInput
+  }
+
+  /**
+   * ParkingRecord deleteMany
+   */
+  export type ParkingRecordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParkingRecords to delete
+     */
+    where?: ParkingRecordWhereInput
+    /**
+     * Limit how many ParkingRecords to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParkingRecord.parkingLot
+   */
+  export type ParkingRecord$parkingLotArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingLot
+     */
+    select?: ParkingLotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingLot
+     */
+    omit?: ParkingLotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingLotInclude<ExtArgs> | null
+    where?: ParkingLotWhereInput
+  }
+
+  /**
+   * ParkingRecord without action
+   */
+  export type ParkingRecordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParkingRecord
+     */
+    select?: ParkingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParkingRecord
+     */
+    omit?: ParkingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParkingRecordInclude<ExtArgs> | null
   }
 
 
@@ -1939,6 +5750,7 @@ export namespace Prisma {
     firstName: 'firstName',
     lastName: 'lastName',
     email: 'email',
+    nationalId: 'nationalId',
     role: 'role',
     password: 'password',
     createdAt: 'createdAt',
@@ -1946,6 +5758,42 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const VehicleScalarFieldEnum: {
+    id: 'id',
+    plateNumber: 'plateNumber',
+    manufacturer: 'manufacturer',
+    model: 'model',
+    color: 'color',
+    userId: 'userId'
+  };
+
+  export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeof VehicleScalarFieldEnum]
+
+
+  export const ParkingLotScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    location: 'location',
+    capacity: 'capacity',
+    hourlyRate: 'hourlyRate'
+  };
+
+  export type ParkingLotScalarFieldEnum = (typeof ParkingLotScalarFieldEnum)[keyof typeof ParkingLotScalarFieldEnum]
+
+
+  export const ParkingRecordScalarFieldEnum: {
+    id: 'id',
+    checkInTime: 'checkInTime',
+    checkOutTime: 'checkOutTime',
+    duration: 'duration',
+    amountPaid: 'amountPaid',
+    vehicleId: 'vehicleId',
+    parkingLotId: 'parkingLotId'
+  };
+
+  export type ParkingRecordScalarFieldEnum = (typeof ParkingRecordScalarFieldEnum)[keyof typeof ParkingRecordScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1962,6 +5810,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -2023,6 +5879,34 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'BigInt'
+   */
+  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
+    
+
+
+  /**
+   * Reference to a field of type 'BigInt[]'
+   */
+  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -2036,10 +5920,12 @@ export namespace Prisma {
     firstName?: StringFilter<"User"> | string
     lastName?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
+    nationalId?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
     password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    vehicle?: VehicleListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -2047,15 +5933,18 @@ export namespace Prisma {
     firstName?: SortOrder
     lastName?: SortOrder
     email?: SortOrder
+    nationalId?: SortOrder
     role?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    vehicle?: VehicleOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
+    nationalId?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -2065,13 +5954,15 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-  }, "id" | "email">
+    vehicle?: VehicleListRelationFilter
+  }, "id" | "email" | "nationalId">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
     email?: SortOrder
+    nationalId?: SortOrder
     role?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
@@ -2089,10 +5980,201 @@ export namespace Prisma {
     firstName?: StringWithAggregatesFilter<"User"> | string
     lastName?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
+    nationalId?: StringWithAggregatesFilter<"User"> | string
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     password?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type VehicleWhereInput = {
+    AND?: VehicleWhereInput | VehicleWhereInput[]
+    OR?: VehicleWhereInput[]
+    NOT?: VehicleWhereInput | VehicleWhereInput[]
+    id?: StringFilter<"Vehicle"> | string
+    plateNumber?: StringFilter<"Vehicle"> | string
+    manufacturer?: StringFilter<"Vehicle"> | string
+    model?: StringFilter<"Vehicle"> | string
+    color?: StringFilter<"Vehicle"> | string
+    userId?: StringFilter<"Vehicle"> | string
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
+    parkingRecords?: ParkingRecordListRelationFilter
+  }
+
+  export type VehicleOrderByWithRelationInput = {
+    id?: SortOrder
+    plateNumber?: SortOrder
+    manufacturer?: SortOrder
+    model?: SortOrder
+    color?: SortOrder
+    userId?: SortOrder
+    owner?: UserOrderByWithRelationInput
+    parkingRecords?: ParkingRecordOrderByRelationAggregateInput
+  }
+
+  export type VehicleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    plateNumber?: string
+    AND?: VehicleWhereInput | VehicleWhereInput[]
+    OR?: VehicleWhereInput[]
+    NOT?: VehicleWhereInput | VehicleWhereInput[]
+    manufacturer?: StringFilter<"Vehicle"> | string
+    model?: StringFilter<"Vehicle"> | string
+    color?: StringFilter<"Vehicle"> | string
+    userId?: StringFilter<"Vehicle"> | string
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
+    parkingRecords?: ParkingRecordListRelationFilter
+  }, "id" | "plateNumber">
+
+  export type VehicleOrderByWithAggregationInput = {
+    id?: SortOrder
+    plateNumber?: SortOrder
+    manufacturer?: SortOrder
+    model?: SortOrder
+    color?: SortOrder
+    userId?: SortOrder
+    _count?: VehicleCountOrderByAggregateInput
+    _max?: VehicleMaxOrderByAggregateInput
+    _min?: VehicleMinOrderByAggregateInput
+  }
+
+  export type VehicleScalarWhereWithAggregatesInput = {
+    AND?: VehicleScalarWhereWithAggregatesInput | VehicleScalarWhereWithAggregatesInput[]
+    OR?: VehicleScalarWhereWithAggregatesInput[]
+    NOT?: VehicleScalarWhereWithAggregatesInput | VehicleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Vehicle"> | string
+    plateNumber?: StringWithAggregatesFilter<"Vehicle"> | string
+    manufacturer?: StringWithAggregatesFilter<"Vehicle"> | string
+    model?: StringWithAggregatesFilter<"Vehicle"> | string
+    color?: StringWithAggregatesFilter<"Vehicle"> | string
+    userId?: StringWithAggregatesFilter<"Vehicle"> | string
+  }
+
+  export type ParkingLotWhereInput = {
+    AND?: ParkingLotWhereInput | ParkingLotWhereInput[]
+    OR?: ParkingLotWhereInput[]
+    NOT?: ParkingLotWhereInput | ParkingLotWhereInput[]
+    id?: StringFilter<"ParkingLot"> | string
+    name?: StringFilter<"ParkingLot"> | string
+    location?: StringFilter<"ParkingLot"> | string
+    capacity?: IntFilter<"ParkingLot"> | number
+    hourlyRate?: IntFilter<"ParkingLot"> | number
+    parkingRecords?: ParkingRecordListRelationFilter
+  }
+
+  export type ParkingLotOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    location?: SortOrder
+    capacity?: SortOrder
+    hourlyRate?: SortOrder
+    parkingRecords?: ParkingRecordOrderByRelationAggregateInput
+  }
+
+  export type ParkingLotWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ParkingLotWhereInput | ParkingLotWhereInput[]
+    OR?: ParkingLotWhereInput[]
+    NOT?: ParkingLotWhereInput | ParkingLotWhereInput[]
+    name?: StringFilter<"ParkingLot"> | string
+    location?: StringFilter<"ParkingLot"> | string
+    capacity?: IntFilter<"ParkingLot"> | number
+    hourlyRate?: IntFilter<"ParkingLot"> | number
+    parkingRecords?: ParkingRecordListRelationFilter
+  }, "id">
+
+  export type ParkingLotOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    location?: SortOrder
+    capacity?: SortOrder
+    hourlyRate?: SortOrder
+    _count?: ParkingLotCountOrderByAggregateInput
+    _avg?: ParkingLotAvgOrderByAggregateInput
+    _max?: ParkingLotMaxOrderByAggregateInput
+    _min?: ParkingLotMinOrderByAggregateInput
+    _sum?: ParkingLotSumOrderByAggregateInput
+  }
+
+  export type ParkingLotScalarWhereWithAggregatesInput = {
+    AND?: ParkingLotScalarWhereWithAggregatesInput | ParkingLotScalarWhereWithAggregatesInput[]
+    OR?: ParkingLotScalarWhereWithAggregatesInput[]
+    NOT?: ParkingLotScalarWhereWithAggregatesInput | ParkingLotScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ParkingLot"> | string
+    name?: StringWithAggregatesFilter<"ParkingLot"> | string
+    location?: StringWithAggregatesFilter<"ParkingLot"> | string
+    capacity?: IntWithAggregatesFilter<"ParkingLot"> | number
+    hourlyRate?: IntWithAggregatesFilter<"ParkingLot"> | number
+  }
+
+  export type ParkingRecordWhereInput = {
+    AND?: ParkingRecordWhereInput | ParkingRecordWhereInput[]
+    OR?: ParkingRecordWhereInput[]
+    NOT?: ParkingRecordWhereInput | ParkingRecordWhereInput[]
+    id?: StringFilter<"ParkingRecord"> | string
+    checkInTime?: DateTimeFilter<"ParkingRecord"> | Date | string
+    checkOutTime?: DateTimeNullableFilter<"ParkingRecord"> | Date | string | null
+    duration?: BigIntNullableFilter<"ParkingRecord"> | bigint | number | null
+    amountPaid?: FloatNullableFilter<"ParkingRecord"> | number | null
+    vehicleId?: StringFilter<"ParkingRecord"> | string
+    parkingLotId?: StringNullableFilter<"ParkingRecord"> | string | null
+    vehicle?: XOR<VehicleScalarRelationFilter, VehicleWhereInput>
+    parkingLot?: XOR<ParkingLotNullableScalarRelationFilter, ParkingLotWhereInput> | null
+  }
+
+  export type ParkingRecordOrderByWithRelationInput = {
+    id?: SortOrder
+    checkInTime?: SortOrder
+    checkOutTime?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    amountPaid?: SortOrderInput | SortOrder
+    vehicleId?: SortOrder
+    parkingLotId?: SortOrderInput | SortOrder
+    vehicle?: VehicleOrderByWithRelationInput
+    parkingLot?: ParkingLotOrderByWithRelationInput
+  }
+
+  export type ParkingRecordWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ParkingRecordWhereInput | ParkingRecordWhereInput[]
+    OR?: ParkingRecordWhereInput[]
+    NOT?: ParkingRecordWhereInput | ParkingRecordWhereInput[]
+    checkInTime?: DateTimeFilter<"ParkingRecord"> | Date | string
+    checkOutTime?: DateTimeNullableFilter<"ParkingRecord"> | Date | string | null
+    duration?: BigIntNullableFilter<"ParkingRecord"> | bigint | number | null
+    amountPaid?: FloatNullableFilter<"ParkingRecord"> | number | null
+    vehicleId?: StringFilter<"ParkingRecord"> | string
+    parkingLotId?: StringNullableFilter<"ParkingRecord"> | string | null
+    vehicle?: XOR<VehicleScalarRelationFilter, VehicleWhereInput>
+    parkingLot?: XOR<ParkingLotNullableScalarRelationFilter, ParkingLotWhereInput> | null
+  }, "id">
+
+  export type ParkingRecordOrderByWithAggregationInput = {
+    id?: SortOrder
+    checkInTime?: SortOrder
+    checkOutTime?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    amountPaid?: SortOrderInput | SortOrder
+    vehicleId?: SortOrder
+    parkingLotId?: SortOrderInput | SortOrder
+    _count?: ParkingRecordCountOrderByAggregateInput
+    _avg?: ParkingRecordAvgOrderByAggregateInput
+    _max?: ParkingRecordMaxOrderByAggregateInput
+    _min?: ParkingRecordMinOrderByAggregateInput
+    _sum?: ParkingRecordSumOrderByAggregateInput
+  }
+
+  export type ParkingRecordScalarWhereWithAggregatesInput = {
+    AND?: ParkingRecordScalarWhereWithAggregatesInput | ParkingRecordScalarWhereWithAggregatesInput[]
+    OR?: ParkingRecordScalarWhereWithAggregatesInput[]
+    NOT?: ParkingRecordScalarWhereWithAggregatesInput | ParkingRecordScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ParkingRecord"> | string
+    checkInTime?: DateTimeWithAggregatesFilter<"ParkingRecord"> | Date | string
+    checkOutTime?: DateTimeNullableWithAggregatesFilter<"ParkingRecord"> | Date | string | null
+    duration?: BigIntNullableWithAggregatesFilter<"ParkingRecord"> | bigint | number | null
+    amountPaid?: FloatNullableWithAggregatesFilter<"ParkingRecord"> | number | null
+    vehicleId?: StringWithAggregatesFilter<"ParkingRecord"> | string
+    parkingLotId?: StringNullableWithAggregatesFilter<"ParkingRecord"> | string | null
   }
 
   export type UserCreateInput = {
@@ -2100,10 +6182,12 @@ export namespace Prisma {
     firstName: string
     lastName: string
     email: string
+    nationalId: string
     role?: $Enums.Role
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    vehicle?: VehicleCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -2111,10 +6195,12 @@ export namespace Prisma {
     firstName: string
     lastName: string
     email: string
+    nationalId: string
     role?: $Enums.Role
     password: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    vehicle?: VehicleUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUpdateInput = {
@@ -2122,10 +6208,12 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    nationalId?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vehicle?: VehicleUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -2133,10 +6221,12 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    nationalId?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vehicle?: VehicleUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -2144,6 +6234,7 @@ export namespace Prisma {
     firstName: string
     lastName: string
     email: string
+    nationalId: string
     role?: $Enums.Role
     password: string
     createdAt?: Date | string
@@ -2155,6 +6246,7 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    nationalId?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2166,10 +6258,205 @@ export namespace Prisma {
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    nationalId?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VehicleCreateInput = {
+    id?: string
+    plateNumber: string
+    manufacturer: string
+    model: string
+    color: string
+    owner: UserCreateNestedOneWithoutVehicleInput
+    parkingRecords?: ParkingRecordCreateNestedManyWithoutVehicleInput
+  }
+
+  export type VehicleUncheckedCreateInput = {
+    id?: string
+    plateNumber: string
+    manufacturer: string
+    model: string
+    color: string
+    userId: string
+    parkingRecords?: ParkingRecordUncheckedCreateNestedManyWithoutVehicleInput
+  }
+
+  export type VehicleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plateNumber?: StringFieldUpdateOperationsInput | string
+    manufacturer?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    owner?: UserUpdateOneRequiredWithoutVehicleNestedInput
+    parkingRecords?: ParkingRecordUpdateManyWithoutVehicleNestedInput
+  }
+
+  export type VehicleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plateNumber?: StringFieldUpdateOperationsInput | string
+    manufacturer?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    parkingRecords?: ParkingRecordUncheckedUpdateManyWithoutVehicleNestedInput
+  }
+
+  export type VehicleCreateManyInput = {
+    id?: string
+    plateNumber: string
+    manufacturer: string
+    model: string
+    color: string
+    userId: string
+  }
+
+  export type VehicleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plateNumber?: StringFieldUpdateOperationsInput | string
+    manufacturer?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VehicleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plateNumber?: StringFieldUpdateOperationsInput | string
+    manufacturer?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParkingLotCreateInput = {
+    id?: string
+    name: string
+    location: string
+    capacity: number
+    hourlyRate: number
+    parkingRecords?: ParkingRecordCreateNestedManyWithoutParkingLotInput
+  }
+
+  export type ParkingLotUncheckedCreateInput = {
+    id?: string
+    name: string
+    location: string
+    capacity: number
+    hourlyRate: number
+    parkingRecords?: ParkingRecordUncheckedCreateNestedManyWithoutParkingLotInput
+  }
+
+  export type ParkingLotUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    hourlyRate?: IntFieldUpdateOperationsInput | number
+    parkingRecords?: ParkingRecordUpdateManyWithoutParkingLotNestedInput
+  }
+
+  export type ParkingLotUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    hourlyRate?: IntFieldUpdateOperationsInput | number
+    parkingRecords?: ParkingRecordUncheckedUpdateManyWithoutParkingLotNestedInput
+  }
+
+  export type ParkingLotCreateManyInput = {
+    id?: string
+    name: string
+    location: string
+    capacity: number
+    hourlyRate: number
+  }
+
+  export type ParkingLotUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    hourlyRate?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ParkingLotUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    hourlyRate?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ParkingRecordCreateInput = {
+    id?: string
+    checkInTime?: Date | string
+    checkOutTime?: Date | string | null
+    duration?: bigint | number | null
+    amountPaid?: number | null
+    vehicle: VehicleCreateNestedOneWithoutParkingRecordsInput
+    parkingLot?: ParkingLotCreateNestedOneWithoutParkingRecordsInput
+  }
+
+  export type ParkingRecordUncheckedCreateInput = {
+    id?: string
+    checkInTime?: Date | string
+    checkOutTime?: Date | string | null
+    duration?: bigint | number | null
+    amountPaid?: number | null
+    vehicleId: string
+    parkingLotId?: string | null
+  }
+
+  export type ParkingRecordUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    checkInTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkOutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    duration?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    amountPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    vehicle?: VehicleUpdateOneRequiredWithoutParkingRecordsNestedInput
+    parkingLot?: ParkingLotUpdateOneWithoutParkingRecordsNestedInput
+  }
+
+  export type ParkingRecordUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    checkInTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkOutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    duration?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    amountPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    vehicleId?: StringFieldUpdateOperationsInput | string
+    parkingLotId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ParkingRecordCreateManyInput = {
+    id?: string
+    checkInTime?: Date | string
+    checkOutTime?: Date | string | null
+    duration?: bigint | number | null
+    amountPaid?: number | null
+    vehicleId: string
+    parkingLotId?: string | null
+  }
+
+  export type ParkingRecordUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    checkInTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkOutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    duration?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    amountPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type ParkingRecordUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    checkInTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkOutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    duration?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    amountPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    vehicleId?: StringFieldUpdateOperationsInput | string
+    parkingLotId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2205,11 +6492,22 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type VehicleListRelationFilter = {
+    every?: VehicleWhereInput
+    some?: VehicleWhereInput
+    none?: VehicleWhereInput
+  }
+
+  export type VehicleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
     email?: SortOrder
+    nationalId?: SortOrder
     role?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
@@ -2221,6 +6519,7 @@ export namespace Prisma {
     firstName?: SortOrder
     lastName?: SortOrder
     email?: SortOrder
+    nationalId?: SortOrder
     role?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
@@ -2232,6 +6531,7 @@ export namespace Prisma {
     firstName?: SortOrder
     lastName?: SortOrder
     email?: SortOrder
+    nationalId?: SortOrder
     role?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
@@ -2280,6 +6580,290 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type ParkingRecordListRelationFilter = {
+    every?: ParkingRecordWhereInput
+    some?: ParkingRecordWhereInput
+    none?: ParkingRecordWhereInput
+  }
+
+  export type ParkingRecordOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type VehicleCountOrderByAggregateInput = {
+    id?: SortOrder
+    plateNumber?: SortOrder
+    manufacturer?: SortOrder
+    model?: SortOrder
+    color?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type VehicleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    plateNumber?: SortOrder
+    manufacturer?: SortOrder
+    model?: SortOrder
+    color?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type VehicleMinOrderByAggregateInput = {
+    id?: SortOrder
+    plateNumber?: SortOrder
+    manufacturer?: SortOrder
+    model?: SortOrder
+    color?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type ParkingLotCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    location?: SortOrder
+    capacity?: SortOrder
+    hourlyRate?: SortOrder
+  }
+
+  export type ParkingLotAvgOrderByAggregateInput = {
+    capacity?: SortOrder
+    hourlyRate?: SortOrder
+  }
+
+  export type ParkingLotMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    location?: SortOrder
+    capacity?: SortOrder
+    hourlyRate?: SortOrder
+  }
+
+  export type ParkingLotMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    location?: SortOrder
+    capacity?: SortOrder
+    hourlyRate?: SortOrder
+  }
+
+  export type ParkingLotSumOrderByAggregateInput = {
+    capacity?: SortOrder
+    hourlyRate?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type BigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+  }
+
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type VehicleScalarRelationFilter = {
+    is?: VehicleWhereInput
+    isNot?: VehicleWhereInput
+  }
+
+  export type ParkingLotNullableScalarRelationFilter = {
+    is?: ParkingLotWhereInput | null
+    isNot?: ParkingLotWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type ParkingRecordCountOrderByAggregateInput = {
+    id?: SortOrder
+    checkInTime?: SortOrder
+    checkOutTime?: SortOrder
+    duration?: SortOrder
+    amountPaid?: SortOrder
+    vehicleId?: SortOrder
+    parkingLotId?: SortOrder
+  }
+
+  export type ParkingRecordAvgOrderByAggregateInput = {
+    duration?: SortOrder
+    amountPaid?: SortOrder
+  }
+
+  export type ParkingRecordMaxOrderByAggregateInput = {
+    id?: SortOrder
+    checkInTime?: SortOrder
+    checkOutTime?: SortOrder
+    duration?: SortOrder
+    amountPaid?: SortOrder
+    vehicleId?: SortOrder
+    parkingLotId?: SortOrder
+  }
+
+  export type ParkingRecordMinOrderByAggregateInput = {
+    id?: SortOrder
+    checkInTime?: SortOrder
+    checkOutTime?: SortOrder
+    duration?: SortOrder
+    amountPaid?: SortOrder
+    vehicleId?: SortOrder
+    parkingLotId?: SortOrder
+  }
+
+  export type ParkingRecordSumOrderByAggregateInput = {
+    duration?: SortOrder
+    amountPaid?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type VehicleCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<VehicleCreateWithoutOwnerInput, VehicleUncheckedCreateWithoutOwnerInput> | VehicleCreateWithoutOwnerInput[] | VehicleUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutOwnerInput | VehicleCreateOrConnectWithoutOwnerInput[]
+    createMany?: VehicleCreateManyOwnerInputEnvelope
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+  }
+
+  export type VehicleUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<VehicleCreateWithoutOwnerInput, VehicleUncheckedCreateWithoutOwnerInput> | VehicleCreateWithoutOwnerInput[] | VehicleUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutOwnerInput | VehicleCreateOrConnectWithoutOwnerInput[]
+    createMany?: VehicleCreateManyOwnerInputEnvelope
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2290,6 +6874,194 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type VehicleUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<VehicleCreateWithoutOwnerInput, VehicleUncheckedCreateWithoutOwnerInput> | VehicleCreateWithoutOwnerInput[] | VehicleUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutOwnerInput | VehicleCreateOrConnectWithoutOwnerInput[]
+    upsert?: VehicleUpsertWithWhereUniqueWithoutOwnerInput | VehicleUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: VehicleCreateManyOwnerInputEnvelope
+    set?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    disconnect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    delete?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    update?: VehicleUpdateWithWhereUniqueWithoutOwnerInput | VehicleUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: VehicleUpdateManyWithWhereWithoutOwnerInput | VehicleUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+  }
+
+  export type VehicleUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<VehicleCreateWithoutOwnerInput, VehicleUncheckedCreateWithoutOwnerInput> | VehicleCreateWithoutOwnerInput[] | VehicleUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: VehicleCreateOrConnectWithoutOwnerInput | VehicleCreateOrConnectWithoutOwnerInput[]
+    upsert?: VehicleUpsertWithWhereUniqueWithoutOwnerInput | VehicleUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: VehicleCreateManyOwnerInputEnvelope
+    set?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    disconnect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    delete?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
+    update?: VehicleUpdateWithWhereUniqueWithoutOwnerInput | VehicleUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: VehicleUpdateManyWithWhereWithoutOwnerInput | VehicleUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutVehicleInput = {
+    create?: XOR<UserCreateWithoutVehicleInput, UserUncheckedCreateWithoutVehicleInput>
+    connectOrCreate?: UserCreateOrConnectWithoutVehicleInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ParkingRecordCreateNestedManyWithoutVehicleInput = {
+    create?: XOR<ParkingRecordCreateWithoutVehicleInput, ParkingRecordUncheckedCreateWithoutVehicleInput> | ParkingRecordCreateWithoutVehicleInput[] | ParkingRecordUncheckedCreateWithoutVehicleInput[]
+    connectOrCreate?: ParkingRecordCreateOrConnectWithoutVehicleInput | ParkingRecordCreateOrConnectWithoutVehicleInput[]
+    createMany?: ParkingRecordCreateManyVehicleInputEnvelope
+    connect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+  }
+
+  export type ParkingRecordUncheckedCreateNestedManyWithoutVehicleInput = {
+    create?: XOR<ParkingRecordCreateWithoutVehicleInput, ParkingRecordUncheckedCreateWithoutVehicleInput> | ParkingRecordCreateWithoutVehicleInput[] | ParkingRecordUncheckedCreateWithoutVehicleInput[]
+    connectOrCreate?: ParkingRecordCreateOrConnectWithoutVehicleInput | ParkingRecordCreateOrConnectWithoutVehicleInput[]
+    createMany?: ParkingRecordCreateManyVehicleInputEnvelope
+    connect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutVehicleNestedInput = {
+    create?: XOR<UserCreateWithoutVehicleInput, UserUncheckedCreateWithoutVehicleInput>
+    connectOrCreate?: UserCreateOrConnectWithoutVehicleInput
+    upsert?: UserUpsertWithoutVehicleInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutVehicleInput, UserUpdateWithoutVehicleInput>, UserUncheckedUpdateWithoutVehicleInput>
+  }
+
+  export type ParkingRecordUpdateManyWithoutVehicleNestedInput = {
+    create?: XOR<ParkingRecordCreateWithoutVehicleInput, ParkingRecordUncheckedCreateWithoutVehicleInput> | ParkingRecordCreateWithoutVehicleInput[] | ParkingRecordUncheckedCreateWithoutVehicleInput[]
+    connectOrCreate?: ParkingRecordCreateOrConnectWithoutVehicleInput | ParkingRecordCreateOrConnectWithoutVehicleInput[]
+    upsert?: ParkingRecordUpsertWithWhereUniqueWithoutVehicleInput | ParkingRecordUpsertWithWhereUniqueWithoutVehicleInput[]
+    createMany?: ParkingRecordCreateManyVehicleInputEnvelope
+    set?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    disconnect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    delete?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    connect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    update?: ParkingRecordUpdateWithWhereUniqueWithoutVehicleInput | ParkingRecordUpdateWithWhereUniqueWithoutVehicleInput[]
+    updateMany?: ParkingRecordUpdateManyWithWhereWithoutVehicleInput | ParkingRecordUpdateManyWithWhereWithoutVehicleInput[]
+    deleteMany?: ParkingRecordScalarWhereInput | ParkingRecordScalarWhereInput[]
+  }
+
+  export type ParkingRecordUncheckedUpdateManyWithoutVehicleNestedInput = {
+    create?: XOR<ParkingRecordCreateWithoutVehicleInput, ParkingRecordUncheckedCreateWithoutVehicleInput> | ParkingRecordCreateWithoutVehicleInput[] | ParkingRecordUncheckedCreateWithoutVehicleInput[]
+    connectOrCreate?: ParkingRecordCreateOrConnectWithoutVehicleInput | ParkingRecordCreateOrConnectWithoutVehicleInput[]
+    upsert?: ParkingRecordUpsertWithWhereUniqueWithoutVehicleInput | ParkingRecordUpsertWithWhereUniqueWithoutVehicleInput[]
+    createMany?: ParkingRecordCreateManyVehicleInputEnvelope
+    set?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    disconnect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    delete?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    connect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    update?: ParkingRecordUpdateWithWhereUniqueWithoutVehicleInput | ParkingRecordUpdateWithWhereUniqueWithoutVehicleInput[]
+    updateMany?: ParkingRecordUpdateManyWithWhereWithoutVehicleInput | ParkingRecordUpdateManyWithWhereWithoutVehicleInput[]
+    deleteMany?: ParkingRecordScalarWhereInput | ParkingRecordScalarWhereInput[]
+  }
+
+  export type ParkingRecordCreateNestedManyWithoutParkingLotInput = {
+    create?: XOR<ParkingRecordCreateWithoutParkingLotInput, ParkingRecordUncheckedCreateWithoutParkingLotInput> | ParkingRecordCreateWithoutParkingLotInput[] | ParkingRecordUncheckedCreateWithoutParkingLotInput[]
+    connectOrCreate?: ParkingRecordCreateOrConnectWithoutParkingLotInput | ParkingRecordCreateOrConnectWithoutParkingLotInput[]
+    createMany?: ParkingRecordCreateManyParkingLotInputEnvelope
+    connect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+  }
+
+  export type ParkingRecordUncheckedCreateNestedManyWithoutParkingLotInput = {
+    create?: XOR<ParkingRecordCreateWithoutParkingLotInput, ParkingRecordUncheckedCreateWithoutParkingLotInput> | ParkingRecordCreateWithoutParkingLotInput[] | ParkingRecordUncheckedCreateWithoutParkingLotInput[]
+    connectOrCreate?: ParkingRecordCreateOrConnectWithoutParkingLotInput | ParkingRecordCreateOrConnectWithoutParkingLotInput[]
+    createMany?: ParkingRecordCreateManyParkingLotInputEnvelope
+    connect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ParkingRecordUpdateManyWithoutParkingLotNestedInput = {
+    create?: XOR<ParkingRecordCreateWithoutParkingLotInput, ParkingRecordUncheckedCreateWithoutParkingLotInput> | ParkingRecordCreateWithoutParkingLotInput[] | ParkingRecordUncheckedCreateWithoutParkingLotInput[]
+    connectOrCreate?: ParkingRecordCreateOrConnectWithoutParkingLotInput | ParkingRecordCreateOrConnectWithoutParkingLotInput[]
+    upsert?: ParkingRecordUpsertWithWhereUniqueWithoutParkingLotInput | ParkingRecordUpsertWithWhereUniqueWithoutParkingLotInput[]
+    createMany?: ParkingRecordCreateManyParkingLotInputEnvelope
+    set?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    disconnect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    delete?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    connect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    update?: ParkingRecordUpdateWithWhereUniqueWithoutParkingLotInput | ParkingRecordUpdateWithWhereUniqueWithoutParkingLotInput[]
+    updateMany?: ParkingRecordUpdateManyWithWhereWithoutParkingLotInput | ParkingRecordUpdateManyWithWhereWithoutParkingLotInput[]
+    deleteMany?: ParkingRecordScalarWhereInput | ParkingRecordScalarWhereInput[]
+  }
+
+  export type ParkingRecordUncheckedUpdateManyWithoutParkingLotNestedInput = {
+    create?: XOR<ParkingRecordCreateWithoutParkingLotInput, ParkingRecordUncheckedCreateWithoutParkingLotInput> | ParkingRecordCreateWithoutParkingLotInput[] | ParkingRecordUncheckedCreateWithoutParkingLotInput[]
+    connectOrCreate?: ParkingRecordCreateOrConnectWithoutParkingLotInput | ParkingRecordCreateOrConnectWithoutParkingLotInput[]
+    upsert?: ParkingRecordUpsertWithWhereUniqueWithoutParkingLotInput | ParkingRecordUpsertWithWhereUniqueWithoutParkingLotInput[]
+    createMany?: ParkingRecordCreateManyParkingLotInputEnvelope
+    set?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    disconnect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    delete?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    connect?: ParkingRecordWhereUniqueInput | ParkingRecordWhereUniqueInput[]
+    update?: ParkingRecordUpdateWithWhereUniqueWithoutParkingLotInput | ParkingRecordUpdateWithWhereUniqueWithoutParkingLotInput[]
+    updateMany?: ParkingRecordUpdateManyWithWhereWithoutParkingLotInput | ParkingRecordUpdateManyWithWhereWithoutParkingLotInput[]
+    deleteMany?: ParkingRecordScalarWhereInput | ParkingRecordScalarWhereInput[]
+  }
+
+  export type VehicleCreateNestedOneWithoutParkingRecordsInput = {
+    create?: XOR<VehicleCreateWithoutParkingRecordsInput, VehicleUncheckedCreateWithoutParkingRecordsInput>
+    connectOrCreate?: VehicleCreateOrConnectWithoutParkingRecordsInput
+    connect?: VehicleWhereUniqueInput
+  }
+
+  export type ParkingLotCreateNestedOneWithoutParkingRecordsInput = {
+    create?: XOR<ParkingLotCreateWithoutParkingRecordsInput, ParkingLotUncheckedCreateWithoutParkingRecordsInput>
+    connectOrCreate?: ParkingLotCreateOrConnectWithoutParkingRecordsInput
+    connect?: ParkingLotWhereUniqueInput
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type NullableBigIntFieldUpdateOperationsInput = {
+    set?: bigint | number | null
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type VehicleUpdateOneRequiredWithoutParkingRecordsNestedInput = {
+    create?: XOR<VehicleCreateWithoutParkingRecordsInput, VehicleUncheckedCreateWithoutParkingRecordsInput>
+    connectOrCreate?: VehicleCreateOrConnectWithoutParkingRecordsInput
+    upsert?: VehicleUpsertWithoutParkingRecordsInput
+    connect?: VehicleWhereUniqueInput
+    update?: XOR<XOR<VehicleUpdateToOneWithWhereWithoutParkingRecordsInput, VehicleUpdateWithoutParkingRecordsInput>, VehicleUncheckedUpdateWithoutParkingRecordsInput>
+  }
+
+  export type ParkingLotUpdateOneWithoutParkingRecordsNestedInput = {
+    create?: XOR<ParkingLotCreateWithoutParkingRecordsInput, ParkingLotUncheckedCreateWithoutParkingRecordsInput>
+    connectOrCreate?: ParkingLotCreateOrConnectWithoutParkingRecordsInput
+    upsert?: ParkingLotUpsertWithoutParkingRecordsInput
+    disconnect?: ParkingLotWhereInput | boolean
+    delete?: ParkingLotWhereInput | boolean
+    connect?: ParkingLotWhereUniqueInput
+    update?: XOR<XOR<ParkingLotUpdateToOneWithWhereWithoutParkingRecordsInput, ParkingLotUpdateWithoutParkingRecordsInput>, ParkingLotUncheckedUpdateWithoutParkingRecordsInput>
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2374,6 +7146,581 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedBigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type VehicleCreateWithoutOwnerInput = {
+    id?: string
+    plateNumber: string
+    manufacturer: string
+    model: string
+    color: string
+    parkingRecords?: ParkingRecordCreateNestedManyWithoutVehicleInput
+  }
+
+  export type VehicleUncheckedCreateWithoutOwnerInput = {
+    id?: string
+    plateNumber: string
+    manufacturer: string
+    model: string
+    color: string
+    parkingRecords?: ParkingRecordUncheckedCreateNestedManyWithoutVehicleInput
+  }
+
+  export type VehicleCreateOrConnectWithoutOwnerInput = {
+    where: VehicleWhereUniqueInput
+    create: XOR<VehicleCreateWithoutOwnerInput, VehicleUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type VehicleCreateManyOwnerInputEnvelope = {
+    data: VehicleCreateManyOwnerInput | VehicleCreateManyOwnerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type VehicleUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: VehicleWhereUniqueInput
+    update: XOR<VehicleUpdateWithoutOwnerInput, VehicleUncheckedUpdateWithoutOwnerInput>
+    create: XOR<VehicleCreateWithoutOwnerInput, VehicleUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type VehicleUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: VehicleWhereUniqueInput
+    data: XOR<VehicleUpdateWithoutOwnerInput, VehicleUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type VehicleUpdateManyWithWhereWithoutOwnerInput = {
+    where: VehicleScalarWhereInput
+    data: XOR<VehicleUpdateManyMutationInput, VehicleUncheckedUpdateManyWithoutOwnerInput>
+  }
+
+  export type VehicleScalarWhereInput = {
+    AND?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+    OR?: VehicleScalarWhereInput[]
+    NOT?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+    id?: StringFilter<"Vehicle"> | string
+    plateNumber?: StringFilter<"Vehicle"> | string
+    manufacturer?: StringFilter<"Vehicle"> | string
+    model?: StringFilter<"Vehicle"> | string
+    color?: StringFilter<"Vehicle"> | string
+    userId?: StringFilter<"Vehicle"> | string
+  }
+
+  export type UserCreateWithoutVehicleInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    nationalId: string
+    role?: $Enums.Role
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutVehicleInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    nationalId: string
+    role?: $Enums.Role
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutVehicleInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutVehicleInput, UserUncheckedCreateWithoutVehicleInput>
+  }
+
+  export type ParkingRecordCreateWithoutVehicleInput = {
+    id?: string
+    checkInTime?: Date | string
+    checkOutTime?: Date | string | null
+    duration?: bigint | number | null
+    amountPaid?: number | null
+    parkingLot?: ParkingLotCreateNestedOneWithoutParkingRecordsInput
+  }
+
+  export type ParkingRecordUncheckedCreateWithoutVehicleInput = {
+    id?: string
+    checkInTime?: Date | string
+    checkOutTime?: Date | string | null
+    duration?: bigint | number | null
+    amountPaid?: number | null
+    parkingLotId?: string | null
+  }
+
+  export type ParkingRecordCreateOrConnectWithoutVehicleInput = {
+    where: ParkingRecordWhereUniqueInput
+    create: XOR<ParkingRecordCreateWithoutVehicleInput, ParkingRecordUncheckedCreateWithoutVehicleInput>
+  }
+
+  export type ParkingRecordCreateManyVehicleInputEnvelope = {
+    data: ParkingRecordCreateManyVehicleInput | ParkingRecordCreateManyVehicleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutVehicleInput = {
+    update: XOR<UserUpdateWithoutVehicleInput, UserUncheckedUpdateWithoutVehicleInput>
+    create: XOR<UserCreateWithoutVehicleInput, UserUncheckedCreateWithoutVehicleInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutVehicleInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutVehicleInput, UserUncheckedUpdateWithoutVehicleInput>
+  }
+
+  export type UserUpdateWithoutVehicleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    nationalId?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutVehicleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    nationalId?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParkingRecordUpsertWithWhereUniqueWithoutVehicleInput = {
+    where: ParkingRecordWhereUniqueInput
+    update: XOR<ParkingRecordUpdateWithoutVehicleInput, ParkingRecordUncheckedUpdateWithoutVehicleInput>
+    create: XOR<ParkingRecordCreateWithoutVehicleInput, ParkingRecordUncheckedCreateWithoutVehicleInput>
+  }
+
+  export type ParkingRecordUpdateWithWhereUniqueWithoutVehicleInput = {
+    where: ParkingRecordWhereUniqueInput
+    data: XOR<ParkingRecordUpdateWithoutVehicleInput, ParkingRecordUncheckedUpdateWithoutVehicleInput>
+  }
+
+  export type ParkingRecordUpdateManyWithWhereWithoutVehicleInput = {
+    where: ParkingRecordScalarWhereInput
+    data: XOR<ParkingRecordUpdateManyMutationInput, ParkingRecordUncheckedUpdateManyWithoutVehicleInput>
+  }
+
+  export type ParkingRecordScalarWhereInput = {
+    AND?: ParkingRecordScalarWhereInput | ParkingRecordScalarWhereInput[]
+    OR?: ParkingRecordScalarWhereInput[]
+    NOT?: ParkingRecordScalarWhereInput | ParkingRecordScalarWhereInput[]
+    id?: StringFilter<"ParkingRecord"> | string
+    checkInTime?: DateTimeFilter<"ParkingRecord"> | Date | string
+    checkOutTime?: DateTimeNullableFilter<"ParkingRecord"> | Date | string | null
+    duration?: BigIntNullableFilter<"ParkingRecord"> | bigint | number | null
+    amountPaid?: FloatNullableFilter<"ParkingRecord"> | number | null
+    vehicleId?: StringFilter<"ParkingRecord"> | string
+    parkingLotId?: StringNullableFilter<"ParkingRecord"> | string | null
+  }
+
+  export type ParkingRecordCreateWithoutParkingLotInput = {
+    id?: string
+    checkInTime?: Date | string
+    checkOutTime?: Date | string | null
+    duration?: bigint | number | null
+    amountPaid?: number | null
+    vehicle: VehicleCreateNestedOneWithoutParkingRecordsInput
+  }
+
+  export type ParkingRecordUncheckedCreateWithoutParkingLotInput = {
+    id?: string
+    checkInTime?: Date | string
+    checkOutTime?: Date | string | null
+    duration?: bigint | number | null
+    amountPaid?: number | null
+    vehicleId: string
+  }
+
+  export type ParkingRecordCreateOrConnectWithoutParkingLotInput = {
+    where: ParkingRecordWhereUniqueInput
+    create: XOR<ParkingRecordCreateWithoutParkingLotInput, ParkingRecordUncheckedCreateWithoutParkingLotInput>
+  }
+
+  export type ParkingRecordCreateManyParkingLotInputEnvelope = {
+    data: ParkingRecordCreateManyParkingLotInput | ParkingRecordCreateManyParkingLotInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ParkingRecordUpsertWithWhereUniqueWithoutParkingLotInput = {
+    where: ParkingRecordWhereUniqueInput
+    update: XOR<ParkingRecordUpdateWithoutParkingLotInput, ParkingRecordUncheckedUpdateWithoutParkingLotInput>
+    create: XOR<ParkingRecordCreateWithoutParkingLotInput, ParkingRecordUncheckedCreateWithoutParkingLotInput>
+  }
+
+  export type ParkingRecordUpdateWithWhereUniqueWithoutParkingLotInput = {
+    where: ParkingRecordWhereUniqueInput
+    data: XOR<ParkingRecordUpdateWithoutParkingLotInput, ParkingRecordUncheckedUpdateWithoutParkingLotInput>
+  }
+
+  export type ParkingRecordUpdateManyWithWhereWithoutParkingLotInput = {
+    where: ParkingRecordScalarWhereInput
+    data: XOR<ParkingRecordUpdateManyMutationInput, ParkingRecordUncheckedUpdateManyWithoutParkingLotInput>
+  }
+
+  export type VehicleCreateWithoutParkingRecordsInput = {
+    id?: string
+    plateNumber: string
+    manufacturer: string
+    model: string
+    color: string
+    owner: UserCreateNestedOneWithoutVehicleInput
+  }
+
+  export type VehicleUncheckedCreateWithoutParkingRecordsInput = {
+    id?: string
+    plateNumber: string
+    manufacturer: string
+    model: string
+    color: string
+    userId: string
+  }
+
+  export type VehicleCreateOrConnectWithoutParkingRecordsInput = {
+    where: VehicleWhereUniqueInput
+    create: XOR<VehicleCreateWithoutParkingRecordsInput, VehicleUncheckedCreateWithoutParkingRecordsInput>
+  }
+
+  export type ParkingLotCreateWithoutParkingRecordsInput = {
+    id?: string
+    name: string
+    location: string
+    capacity: number
+    hourlyRate: number
+  }
+
+  export type ParkingLotUncheckedCreateWithoutParkingRecordsInput = {
+    id?: string
+    name: string
+    location: string
+    capacity: number
+    hourlyRate: number
+  }
+
+  export type ParkingLotCreateOrConnectWithoutParkingRecordsInput = {
+    where: ParkingLotWhereUniqueInput
+    create: XOR<ParkingLotCreateWithoutParkingRecordsInput, ParkingLotUncheckedCreateWithoutParkingRecordsInput>
+  }
+
+  export type VehicleUpsertWithoutParkingRecordsInput = {
+    update: XOR<VehicleUpdateWithoutParkingRecordsInput, VehicleUncheckedUpdateWithoutParkingRecordsInput>
+    create: XOR<VehicleCreateWithoutParkingRecordsInput, VehicleUncheckedCreateWithoutParkingRecordsInput>
+    where?: VehicleWhereInput
+  }
+
+  export type VehicleUpdateToOneWithWhereWithoutParkingRecordsInput = {
+    where?: VehicleWhereInput
+    data: XOR<VehicleUpdateWithoutParkingRecordsInput, VehicleUncheckedUpdateWithoutParkingRecordsInput>
+  }
+
+  export type VehicleUpdateWithoutParkingRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plateNumber?: StringFieldUpdateOperationsInput | string
+    manufacturer?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    owner?: UserUpdateOneRequiredWithoutVehicleNestedInput
+  }
+
+  export type VehicleUncheckedUpdateWithoutParkingRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plateNumber?: StringFieldUpdateOperationsInput | string
+    manufacturer?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParkingLotUpsertWithoutParkingRecordsInput = {
+    update: XOR<ParkingLotUpdateWithoutParkingRecordsInput, ParkingLotUncheckedUpdateWithoutParkingRecordsInput>
+    create: XOR<ParkingLotCreateWithoutParkingRecordsInput, ParkingLotUncheckedCreateWithoutParkingRecordsInput>
+    where?: ParkingLotWhereInput
+  }
+
+  export type ParkingLotUpdateToOneWithWhereWithoutParkingRecordsInput = {
+    where?: ParkingLotWhereInput
+    data: XOR<ParkingLotUpdateWithoutParkingRecordsInput, ParkingLotUncheckedUpdateWithoutParkingRecordsInput>
+  }
+
+  export type ParkingLotUpdateWithoutParkingRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    hourlyRate?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ParkingLotUncheckedUpdateWithoutParkingRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    capacity?: IntFieldUpdateOperationsInput | number
+    hourlyRate?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type VehicleCreateManyOwnerInput = {
+    id?: string
+    plateNumber: string
+    manufacturer: string
+    model: string
+    color: string
+  }
+
+  export type VehicleUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plateNumber?: StringFieldUpdateOperationsInput | string
+    manufacturer?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    parkingRecords?: ParkingRecordUpdateManyWithoutVehicleNestedInput
+  }
+
+  export type VehicleUncheckedUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plateNumber?: StringFieldUpdateOperationsInput | string
+    manufacturer?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    parkingRecords?: ParkingRecordUncheckedUpdateManyWithoutVehicleNestedInput
+  }
+
+  export type VehicleUncheckedUpdateManyWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    plateNumber?: StringFieldUpdateOperationsInput | string
+    manufacturer?: StringFieldUpdateOperationsInput | string
+    model?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParkingRecordCreateManyVehicleInput = {
+    id?: string
+    checkInTime?: Date | string
+    checkOutTime?: Date | string | null
+    duration?: bigint | number | null
+    amountPaid?: number | null
+    parkingLotId?: string | null
+  }
+
+  export type ParkingRecordUpdateWithoutVehicleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    checkInTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkOutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    duration?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    amountPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    parkingLot?: ParkingLotUpdateOneWithoutParkingRecordsNestedInput
+  }
+
+  export type ParkingRecordUncheckedUpdateWithoutVehicleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    checkInTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkOutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    duration?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    amountPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    parkingLotId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ParkingRecordUncheckedUpdateManyWithoutVehicleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    checkInTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkOutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    duration?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    amountPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    parkingLotId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ParkingRecordCreateManyParkingLotInput = {
+    id?: string
+    checkInTime?: Date | string
+    checkOutTime?: Date | string | null
+    duration?: bigint | number | null
+    amountPaid?: number | null
+    vehicleId: string
+  }
+
+  export type ParkingRecordUpdateWithoutParkingLotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    checkInTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkOutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    duration?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    amountPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    vehicle?: VehicleUpdateOneRequiredWithoutParkingRecordsNestedInput
+  }
+
+  export type ParkingRecordUncheckedUpdateWithoutParkingLotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    checkInTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkOutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    duration?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    amountPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    vehicleId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ParkingRecordUncheckedUpdateManyWithoutParkingLotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    checkInTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkOutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    duration?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    amountPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    vehicleId?: StringFieldUpdateOperationsInput | string
   }
 
 

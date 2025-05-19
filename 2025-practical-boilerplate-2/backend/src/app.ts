@@ -10,6 +10,9 @@ import MyJson from './swagger/swagger.json'
 
 import { errorHandler } from "./middleware/error.middleware";
 import AppError from "./utils/AppError";
+import vehicleRoutes from "./routes/vehicles.routes";
+import parkingLotRoutes from "./routes/parkinglot.routes";
+import recordRoutes from "./routes/record.routes";
 const app: Application = express();
 
 app.use(express.json());
@@ -30,6 +33,9 @@ app.use(
 );
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/vehicles", vehicleRoutes);
+app.use("/api/v1/parking-lots",parkingLotRoutes)
+app.use("/api/v1/parking-records", recordRoutes)
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(MyJson))
 

@@ -1,32 +1,64 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import SearchInput from "@/components/shared/SearchInput";
-import { Button,  Checkbox } from "antd";
-import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Checkbox } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import DeleteConfirmationModal from "@/components/modals/DeleteConfirmationModal";
 import DataTable from "@/components/tables/DataTable";
 import { IVehicle } from "@/types";
-import { dummyVehicles } from "@/utils/constants";
+import useVehicles from "@/hooks/useVehicles";
+import CreateModal from "@/components/modals/CreateModal";
 
 const Vehicles = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [vehicles, setVehicles] = useState<IVehicle[]>(dummyVehicles);
+  const [showCreateModal, setShowCreateModal] = useState<boolean>(false);
+  const { vehicles, registerVehicle } = useVehicles();
 
   const handleSearchQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
-  const handleDelete = async (id: string) => {
-    setVehicles((prev) => prev.filter((lot) => lot.id !== id));
+  const handleCreateVehicle = async (newVehicle: IVehicle) => {
+    console.log("Here is new vehicle to be registered: ", newVehicle)
+    try {
+      await registerVehicle(newVehicle);
+    } catch (error) {
+      console.error("Create vehicle error:", error);
+    }
   };
 
-  const handleEdit = async (updatedVehicle: IVehicle) => {
-    setVehicles((prev) =>
-      prev.map((vehicle) =>
-        vehicle.id === updatedVehicle.id ? updatedVehicle : vehicle
-      )
-    );
-  };
+  const vehicleFields: {
+    name: keyof IVehicle;
+    label: string;
+    inputType?: "text" | "number" | "email";
+    rules?: any[];
+    placeholder?: string;
+  }[] = [
+    {
+      name: "plateNumber",
+      label: "Plate Number",
+      placeholder: "Enter plate number",
+      rules: [{ required: true, message: "Plate number is required" }],
+    },
+    {
+      name: "manufacturer",
+      label: "Manufacturer",
+      placeholder: "Enter manufacturer",
+      rules: [{ required: true, message: "Manufacturer is required" }],
+    },
+    {
+      name: "model",
+      label: "Model",
+      placeholder: "Enter model",
+      rules: [{ required: true, message: "Model is required" }],
+    },
+    {
+      name: "color",
+      label: "Color",
+      placeholder: "Enter color",
+      rules: [{ required: true, message: "Color is required" }],
+    },
+  ];
 
   const columns = (
     selectedKey: string | null,
@@ -66,24 +98,9 @@ const Vehicles = () => {
         key: "color",
       },
     ];
-    const actionColumn = {
-      title: "Action",
-      key: "action",
-      render: (_: any, record:IVehicle) =>
-        record.id === selectedKey ? (
-          <span className="flex flex-1 flex-row gap-x-4">
-            <Button onClick={() => handleEditRow(record)}>
-              <EditOutlined /> Edit
-            </Button>
-            <Button danger onClick={handleDeleteRow}>
-              <DeleteOutlined /> Delete
-            </Button>
-          </span>
-        ) : null,
-    };
-
-    return selectedKey ? [...baseColumns, actionColumn] : baseColumns;
+    return baseColumns;
   };
+
   return (
     <div className="bg-white px-10 py-6 rounded-lg">
       <div className="flex flex-1 sm:flex-row flex-col gap-y-4 justify-between pb-6">
@@ -102,7 +119,7 @@ const Vehicles = () => {
             type="primary"
             icon={<PlusOutlined />}
             className="h-[40px]"
-            // onClick={() => setShowCreateModal(true)}
+            onClick={() => setShowCreateModal(true)}
           >
             New Vehicle
           </Button>
@@ -110,15 +127,24 @@ const Vehicles = () => {
       </div>
 
       <DataTable<IVehicle>
-        data={vehicles}
+        data={vehicles ?? []}
         searchQuery={searchValue}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
         columns={columns}
         rowKey="id"
         DeleteModalComponent={DeleteConfirmationModal}
         modalTitle="Edit Parking Lot"
       />
+
+      {showCreateModal && (
+        <CreateModal<IVehicle>
+          visible={showCreateModal}
+          onClose={() => setShowCreateModal(false)}
+          item={null}
+          title="Create New Vehicle"
+          fields={vehicleFields}
+          onSubmit={handleCreateVehicle}
+        />
+      )}
     </div>
   );
 };

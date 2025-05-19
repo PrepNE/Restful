@@ -6,48 +6,41 @@ import {
   Select,
   Button,
   Alert,
+  message,
 } from "antd";
+import { IVehicle } from "@/types";
+import useVehicles from "@/hooks/useVehicles";
+import useParkingLots from "@/hooks/useParkingLots";
+import useParkingRecords from "@/hooks/useParkingRecords";
 
 const { Title, Paragraph } = Typography;
 const { Option } = Select;
 
-interface Vehicle {
-  id: string;
-  plateNumber: string;
-  make: string;
-  model: string;
-}
-
-interface ParkingLot {
-  id: string;
-  name: string;
-  capacity: number;
-  currentOccupancy: number;
-}
-
 const CheckIn = () => {
-  // Dummy data
-  const [userVehicles] = useState<Vehicle[]>([
-    { id: "v1", plateNumber: "RAA123A", make: "Toyota", model: "Corolla" },
-    { id: "v2", plateNumber: "RAB456B", make: "Honda", model: "Civic" },
-  ]);
-
-  const [availableParkingLots] = useState<ParkingLot[]>([
-    { id: "p1", name: "Kigali Arena", capacity: 50, currentOccupancy: 20 },
-    { id: "p2", name: "City Tower", capacity: 100, currentOccupancy: 100 },
-  ]);
-
-  const [selectedVehicle, setSelectedVehicle] = useState<string | undefined>();
-  const [selectedParkingLot, setSelectedParkingLot] = useState<string | undefined>();
+  const [selectedPlate, setSelectedPlate] = useState<string>();
+  const [selectedLot, setSelectedLot] = useState<string>();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = () => {
+  const { vehicles, isLoading: vehiclesLoading } = useVehicles();
+  const { parkingLots, isLoading: lotsLoading } = useParkingLots();
+  const { checkIn } = useParkingRecords();
+
+  const handleSubmit = async () => {
+    if (!selectedPlate || !selectedLot) return;
+
     setIsSubmitting(true);
-    // Simulate async action
-    setTimeout(() => {
-      console.log("Vehicle checked in:", selectedVehicle, selectedParkingLot);
-      setIsSubmitting(false);
-    }, 1500);
+    const success = await checkIn({
+      plateNumber: selectedPlate,
+      parkingLotId: selectedLot,
+    });
+
+    if (success) {
+      message.success("Checked in successfully!");
+      setSelectedLot(undefined);
+      setSelectedPlate(undefined);
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -62,7 +55,7 @@ const CheckIn = () => {
                 Select your vehicle and parking lot to check in
               </Paragraph>
 
-              {userVehicles.length > 0 ? (
+              {vehicles && vehicles.length > 0 ? (
                 <Form
                   layout="vertical"
                   onFinish={handleSubmit}
@@ -71,29 +64,34 @@ const CheckIn = () => {
                   <Form.Item label="Select Vehicle" required>
                     <Select
                       placeholder="Select a vehicle"
-                      value={selectedVehicle}
-                      onChange={setSelectedVehicle}
+                      value={selectedPlate}
+                      onChange={setSelectedPlate}
+                      loading={vehiclesLoading}
                     >
-                      {userVehicles.map((vehicle) => (
-                        <Option key={vehicle.id} value={vehicle.id}>
-                          {vehicle.plateNumber} - {vehicle.make} {vehicle.model}
+                      {vehicles.map((vehicle: IVehicle) => (
+                        <Option key={vehicle.plateNumber} value={vehicle.plateNumber}>
+                          {vehicle.plateNumber} - {vehicle.manufacturer} {vehicle.model}
                         </Option>
                       ))}
                     </Select>
                   </Form.Item>
 
                   <Form.Item label="Select Parking Lot" required>
-                    {availableParkingLots.length > 0 ? (
+                    {parkingLots.length > 0 ? (
                       <Select
                         placeholder="Select a parking lot"
-                        value={selectedParkingLot}
-                        onChange={setSelectedParkingLot}
+                        value={selectedLot}
+                        onChange={setSelectedLot}
+                        loading={lotsLoading}
                       >
-                        {availableParkingLots.map((lot) => (
-                          <Option key={lot.id} value={lot.id}>
-                            {lot.name} - {lot.capacity - lot.currentOccupancy} spots available
-                          </Option>
-                        ))}
+                        {parkingLots.map((lot) => {
+                          const available = lot.capacity - lot.currentOccupancy;
+                          return (
+                            <Option key={lot.id} value={lot.id} disabled={available <= 0}>
+                              {lot.name} - {available} spot{available !== 1 ? "s" : ""} available
+                            </Option>
+                          );
+                        })}
                       </Select>
                     ) : (
                       <Alert
@@ -111,7 +109,7 @@ const CheckIn = () => {
                       htmlType="submit"
                       block
                       loading={isSubmitting}
-                      disabled={!availableParkingLots.length}
+                      disabled={!parkingLots.length}
                     >
                       {isSubmitting ? "Processing..." : "Check In Vehicle"}
                     </Button>
@@ -124,7 +122,7 @@ const CheckIn = () => {
                   </Paragraph>
                   <Button
                     type="primary"
-                    onClick={() => (window.location.href = "/register-vehicle")}
+                    onClick={() => (window.location.href = "/dashboard/vehicles")}
                   >
                     Register Vehicle
                   </Button>
