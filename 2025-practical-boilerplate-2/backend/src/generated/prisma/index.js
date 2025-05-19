@@ -132,7 +132,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\nzabe\\OneDrive\\Desktop\\academics\\Y3\\NE_STARTERS\\Restful\\2025-practical-boilerplate-2\\backend\\src\\generated\\prisma",
+      "value": "C:\\Users\\hp\\Desktop\\NE_2024\\restful\\2025-practical-boilerplate-2\\backend\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -146,7 +146,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\nzabe\\OneDrive\\Desktop\\academics\\Y3\\NE_STARTERS\\Restful\\2025-practical-boilerplate-2\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\hp\\Desktop\\NE_2024\\restful\\2025-practical-boilerplate-2\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
