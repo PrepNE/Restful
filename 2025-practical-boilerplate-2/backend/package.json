@@ -9,10 +9,10 @@
     "build": "tsc",
     "start": "node dist/src/server.js",
     "format": "prettier --write \"src/**/*.ts\"",
-    "prisma:seed": "ts-node prisma/seed.ts"
+    "prisma:seed": "ts-node src/utils/seed.ts"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node src/utils/seed.ts"
   },
   "keywords": [],
   "author": "",

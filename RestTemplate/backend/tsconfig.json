@@ -9,7 +9,10 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "src",

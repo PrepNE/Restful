@@ -15,6 +15,8 @@ import parkingLotRoutes from "./routes/parkinglot.routes";
 import recordRoutes from "./routes/record.routes";
 const app: Application = express();
 
+
+
 app.use(express.json());
 app.use(cookieParser());
 

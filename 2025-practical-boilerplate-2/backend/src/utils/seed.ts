@@ -1,10 +1,13 @@
-import prisma from "../src/utils/client";
-import { hashPassword} from "../src/utils/bcrypt";
+import prisma from "./client";
+import { hashPassword} from "./bcrypt";
+import dotenv from "dotenv";
 
 
 
-
+dotenv.config();
 async function main() {
+  console.log("firstName", process.env.ADMIN_FIRST_NAME);
+console.log("lastName", process.env.ADMIN_LAST_NAME);
   const existingAdmin = await prisma.user.findUnique({
     where: { email: "admin@parking.com" },
   });
@@ -15,6 +18,7 @@ async function main() {
   }
 
 const hashedPassword = await hashPassword(process.env.ADMIN_PASSWORD!);
+
 
 const admin = await prisma.user.create({
   data: {
