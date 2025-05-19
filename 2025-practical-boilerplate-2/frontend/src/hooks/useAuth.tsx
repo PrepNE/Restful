@@ -13,7 +13,7 @@ interface AuthContextType {
   login: (email: string, password: string) => void;
   loggingIn: boolean;
   register: (
-    user: Omit<IUser, "id" | "createdAt" | "updatedAt"> & {
+    user: Omit<IUser, "id" | "role" | "createdAt" | "updatedAt"> & {
       password: string;
     }
   ) => void;
@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const register = async (
-    user: Omit<IUser, "id"> & {
+    user: Omit<IUser, "id" | "role"> & {
       password: string;
     }
   ) => {

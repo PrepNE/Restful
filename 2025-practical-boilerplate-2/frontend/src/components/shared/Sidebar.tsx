@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "antd"; 
+import { Button } from "antd";
 import useAuth from "@/hooks/useAuth";
 import Logo from "./Logo";
 
@@ -27,8 +27,10 @@ interface PageRoute {
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const [expandedMenus, setExpandedMenus] = useState<Record<number, boolean>>({});
+
+  const isAdmin = user?.role === "ADMIN";
 
   const pageDirectories: PageRoute[] = [
     {
@@ -42,7 +44,7 @@ const Sidebar: React.FC = () => {
       name: "Parking",
       icon: <CarOutlined />,
       children: [
-        { id: 21, name: "Parking Lots", path: "/dashboard/slots" },
+        ...(isAdmin ? [{ id: 21, name: "Parking Lots", path: "/dashboard/slots" }] : []),
         { id: 22, name: "Find Parking", path: "/dashboard/find-parking" },
       ],
     },
@@ -55,12 +57,16 @@ const Sidebar: React.FC = () => {
         { id: 32, name: "My History", path: "/dashboard/history" },
       ],
     },
-    {
-      id: 4,
-      name: "Reports",
-      path: "/dashboard/reports",
-      icon: <FileTextOutlined />,
-    },
+    ...(isAdmin
+      ? [
+          {
+            id: 4,
+            name: "Reports",
+            path: "/dashboard/reports",
+            icon: <FileTextOutlined />,
+          },
+        ]
+      : []),
   ];
 
   const isActive = (path: string | undefined) => {

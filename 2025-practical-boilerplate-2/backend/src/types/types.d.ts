@@ -1,8 +1,6 @@
 import { User } from "../generated/prisma";
 import { JwtPayload } from "../../utils/jwt";
 
-
-
 declare global {
   namespace Express {
     interface Request {
@@ -12,11 +10,26 @@ declare global {
 }
 
 export interface IUser {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  nationalId: string;
+  password: string;
+}
+
+export interface IVehicle {
+  plateNumber: string;
+  manufacturer: string;
+  model: string;
+  color: string;
+}
+
+export interface IParkingLot {
+  name: string;
+  location: string;
+  capacity: number;
+  hourlyRate: number;
 }
 
 
-export type SafeUser = Omit<User, "password">
+export type SafeUser = Omit<User, "password">;

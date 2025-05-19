@@ -125,10 +125,38 @@ exports.Prisma.UserScalarFieldEnum = {
   firstName: 'firstName',
   lastName: 'lastName',
   email: 'email',
+  nationalId: 'nationalId',
   role: 'role',
   password: 'password',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VehicleScalarFieldEnum = {
+  id: 'id',
+  plateNumber: 'plateNumber',
+  manufacturer: 'manufacturer',
+  model: 'model',
+  color: 'color',
+  userId: 'userId'
+};
+
+exports.Prisma.ParkingLotScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  location: 'location',
+  capacity: 'capacity',
+  hourlyRate: 'hourlyRate'
+};
+
+exports.Prisma.ParkingRecordScalarFieldEnum = {
+  id: 'id',
+  checkInTime: 'checkInTime',
+  checkOutTime: 'checkOutTime',
+  duration: 'duration',
+  amountPaid: 'amountPaid',
+  vehicleId: 'vehicleId',
+  parkingLotId: 'parkingLotId'
 };
 
 exports.Prisma.SortOrder = {
@@ -140,13 +168,21 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
   USER: 'USER'
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Vehicle: 'Vehicle',
+  ParkingLot: 'ParkingLot',
+  ParkingRecord: 'ParkingRecord'
 };
 
 /**

@@ -28,8 +28,8 @@ interface DeleteModalProps {
 interface DataTableProps<T> {
   data: T[];
   searchQuery: string;
-  onDelete: (id: string) => Promise<void>;
-  onEdit: (item: T) => Promise<void>;
+  onDelete?: (id: string) => Promise<void>;
+  onEdit?: (item: T) => Promise<void>;
   columns: (
     selectedKey: string | null,
     handleEdit: (item: T) => void,
@@ -93,7 +93,7 @@ const DataTable = <T extends { id: string }>({
   };
 
   const confirmDelete = async () => {
-    if (currentItem?.id) {
+    if (currentItem?.id && onDelete) {
       await onDelete(currentItem.id);
       setDeleteModalVisible(false);
       setSelectedKey(null);

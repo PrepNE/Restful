@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import SearchInput from "@/components/shared/SearchInput";
 import { Button, Tag, Checkbox } from "antd";
@@ -7,12 +8,12 @@ import EditModal from "@/components/modals/EditModal";
 import DeleteConfirmationModal from "@/components/modals/DeleteConfirmationModal";
 import DataTable from "@/components/tables/DataTable";
 import { ParkingLot } from "@/types";
-import { dummyLots } from "@/utils/constants";
+import useParkingLots from "@/hooks/useParkingLots";
 
 
 const ParkingLots = () => {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [parkingLots, setParkingLots] = useState<ParkingLot[]>(dummyLots);
+  const { parkingLots } = useParkingLots();
 
   const handleSearchQueryChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -21,13 +22,11 @@ const ParkingLots = () => {
   };
 
   const handleDelete = async (id: string) => {
-    setParkingLots((prev) => prev.filter((lot) => lot.id !== id));
+    // logic to delete parking lot
   };
 
   const handleEdit = async (updatedLot: ParkingLot) => {
-    setParkingLots((prev) =>
-      prev.map((lot) => (lot.id === updatedLot.id ? updatedLot : lot))
-    );
+   // logic to edit parking lot
   };
 
 
