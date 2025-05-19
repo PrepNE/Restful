@@ -1,40 +1,39 @@
-import { Button, Form, Typography } from "antd";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useForm } from "antd/es/form/Form";
+import { Button, Form, Typography } from "antd";
+import FormInput from "@/components/shared/FormInput";
 import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-import React from "react";
-import FormInput from "../shared/FormInput";
-import Link from "antd/es/typography/Link";
 import useAuth from "@/hooks/useAuth";
 
 const RegisterForm = () => {
-  const [form] = useForm();
   const { Text, Title } = Typography;
-  const { register } = useAuth();
+  const [form] = useForm();
+  const { register } = useAuth()
 
-  const handleOnFinish = async () => {
-    form
-      .validateFields()
-      .then(async (values) => {
+  const onSubmit = async () => {
+    form.validateFields()
+    .then(async (values) => {
         await register(values);
-      })
-      .catch((info) => {
-        console.log("Validate Failed:", info);
-      });
+    })
+    .catch(info => {
+        console.log('Validate Failed:', info);
+    });
   };
   return (
-    <div className="md:mx-auto max-w-3xl lg:w-[80%]">
+    <div className="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
       <Form
-        name="normal_signup"
-        onFinish={handleOnFinish}
+        name="normal_Login"
+        onFinish={onSubmit}
         layout="vertical"
         requiredMark
         className="space-y-6"
         form={form}
       >
-        <div className="mb-10">
-          <Title>Sign Up</Title>
+        <div>
+          <Title className="text-3xl font-extrabold">Register</Title>
           <Text className="text-sm mt-4">
-            Sign in to your account and explore a world of possibilities. Your
+            Create a student account and explore a world of possibilities. Your
             journey begins here.
           </Text>
         </div>
@@ -56,34 +55,30 @@ const RegisterForm = () => {
 
         <FormInput
           name="email"
-          label="E-mail"
-          placeholder="Enter Your Email"
-          type="email"
+          label="Email"
+          placeholder="Enter your email"
           prefix={<MailOutlined />}
           rules={[
             {
-              type: "email",
               required: true,
-              message: "Please input your email!",
+              type: "email",
+              message: "Please enter a valid email!",
             },
           ]}
         />
 
         <FormInput
           name="password"
-          label="Password"
+          label="password"
           type="password"
+          placeholder="Create a password"
           prefix={<LockOutlined />}
           rules={[
+            { required: true, message: "Please input your password!" },
+            { min: 6, message: "Password must be at least 6 characters long!" },
             {
-              required: true,
-              message: "Please input your Password!",
-            },
-            {
-              pattern:
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
-              message:
-                "Password must be at least 6 characters, include uppercase, lowercase, number, and special character.",
+              pattern: /^(?=.*[a-z]).{6,}$/,
+              message: "Password must contain at least one letter!",
             },
           ]}
         />
@@ -91,22 +86,22 @@ const RegisterForm = () => {
         <Form.Item className="!mt-10">
           <Button
             block
-            htmlType="submit"
             type="primary"
+            htmlType="submit"
             className="w-full shadow-xl px-4 text-sm font-semibold rounded py-6 text-white bg-primary hover:bg-green-400 focus:outline-none"
           >
-            Create account
+            Register
           </Button>
         </Form.Item>
 
-        <Text className="text-sm text-center block mt-2">
+        <Text className="text-sm !mt-10 text-center">
           Already have an account?{" "}
-          <Link
+          <a
             href="/login"
             className="text-green-600 hover:underline ml-1 whitespace-nowrap"
           >
-            Login here
-          </Link>
+            Sign in
+          </a>
         </Text>
       </Form>
     </div>

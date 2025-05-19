@@ -1,16 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Form, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import React from "react";
+import Link from "antd/es/typography/Link";
 import FormInput from "../shared/FormInput";
-import { Link } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
 
-
 const LoginForm = () => {
-  const [form] = useForm();
   const { Text, Title } = Typography;
-  const { login , loggingIn} = useAuth();
+  const [form] = useForm();
+  const { login } = useAuth();
 
   const handleKeyDownPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === ' ') {
@@ -21,8 +20,9 @@ const LoginForm = () => {
 const handleOnFinish = async (values: { email: string; password: string }) => {
     await login(values.email, values.password);
   };
+
   return (
-    <div className="md:mx-auto max-w-3xl lg:w-[80%]">
+    <div className="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
       <Form
         name="normal_login"
         onFinish={handleOnFinish}
@@ -32,7 +32,7 @@ const handleOnFinish = async (values: { email: string; password: string }) => {
         form={form}
       >
         <div className="mb-10">
-          <Title>Sign In</Title>
+          <Title className="text-3xl font-extrabold">Sign in</Title>
           <Text className="text-sm mt-4">
             Sign in to your account and explore a world of possibilities. Your
             journey begins here.
@@ -42,8 +42,8 @@ const handleOnFinish = async (values: { email: string; password: string }) => {
         <FormInput
           name="email"
           label="E-mail"
-          placeholder="Enter Your Email"
           type="email"
+          placeholder="Enter your email"
           prefix={<MailOutlined />}
           rules={[
             {
@@ -58,8 +58,9 @@ const handleOnFinish = async (values: { email: string; password: string }) => {
           name="password"
           label="Password"
           type="password"
-          onKeyDown={handleKeyDownPress}
+          placeholder="Password"
           prefix={<LockOutlined />}
+          onKeyDown={handleKeyDownPress}
           rules={[
             {
               required: true,
@@ -76,30 +77,27 @@ const handleOnFinish = async (values: { email: string; password: string }) => {
           ]}
         />
 
-          <Form.Item className="!mt-10">
-        <Button
-          block
-          htmlType="submit"
-          type="primary"
-          disabled={loggingIn}
-          className="w-full shadow-xl px-4 text-sm font-semibold rounded py-6 text-white bg-primary hover:bg-green-400 focus:outline-none"
-        >
-          Log In
-        </Button>
-      </Form.Item>
+        <Form.Item className="!mt-10">
+          <Button
+            block
+            type="primary"
+            htmlType="submit"
+            className="w-full shadow-xl px-4 text-sm font-semibold rounded py-6 text-white bg-primary hover:bg-green-400 focus:outline-none"
+          >
+            Log in
+          </Button>
+        </Form.Item>
 
-      <Text className="text-sm text-center block mt-2">
-        Don't have an account?{" "}
-        <Link
-          to={"/register"}
-          className="text-green-600 hover:underline ml-1 whitespace-nowrap"
-        >
-          Register here
-        </Link>
-      </Text>
+        <Text className="text-sm text-center block mt-2">
+          Don't have an account?{" "}
+          <Link
+            href="/register"
+            className="text-green-600 hover:underline ml-1 whitespace-nowrap"
+          >
+            Register here
+          </Link>
+        </Text>
       </Form>
-
-    
     </div>
   );
 };
