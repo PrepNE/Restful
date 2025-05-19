@@ -68,6 +68,15 @@ const RegisterForm = () => {
         />
 
         <FormInput
+          name="nationalId"
+          label="National ID"
+          placeholder="Enter your ID"
+          prefix={<UserOutlined />}
+          rules={[{ required: true, message: "Please input your Identity6!" }]}
+        />
+
+
+        <FormInput
           name="password"
           label="password"
           type="password"

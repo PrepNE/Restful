@@ -25,6 +25,7 @@ const useVehicles = () => {
         message: "Vehicle Registered",
         description: "Your vehicle has been successfully registered.",
       });
+      mutate()
       return data.body;
     } catch (err: any) {
       notification.error({

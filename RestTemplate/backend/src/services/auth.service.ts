@@ -3,7 +3,7 @@ import { ServiceAPIResponse, ServiceAuthResponse } from "../types/service-auth-r
 import { IUser, SafeUser } from "../types/types";
 import prisma from "../utils/client";
 import { generateToken } from "../utils/jwt";
-import { validatedUser } from "../utils/validator";
+import { validatedUser } from "../types/validators/validator";
 import { hashPassword } from "../utils/bcrypt";
 import AppError from "../utils/AppError";
 
