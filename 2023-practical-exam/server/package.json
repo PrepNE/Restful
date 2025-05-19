@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon src/index.js",
+    "start": "node init && nodemon src/index.js",
     "lint": "eslint src --ext .js --report-unused-disable-directives --max-warnings 0"
   },
   "author": "N-pacis",

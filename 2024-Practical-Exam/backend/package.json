@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon  src/index.ts",
+    "dev": "node init && nodemon  src/index.ts",
     "test": "jest --coverage --runInBand --detectOpenHandles --forceExit",
-    "build": "tsc",
-    "start": "node dist/src/index.js",
+    "build": "node init && tsc",
+    "start": "node init && node dist/src/index.js",
     "format": "prettier --write \"src/**/*.ts\""
   },
   "keywords": [],

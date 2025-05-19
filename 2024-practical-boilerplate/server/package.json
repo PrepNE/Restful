@@ -4,10 +4,10 @@
   "description": "A codebase in Node.js API server using Express, with Docker, Jest, and ESLint. All in Typescript",
   "main": "dist/index.js",
   "scripts": {
-    "start": "ts-node ./src/index.ts",
+    "start": "node init && ts-node ./src/index.ts",
     "swagger": "ts-node ./src/index.ts",
-    "dev": "npm run build && concurrently -k \"tsc -w\" \"nodemon dist/index.js  \"",
-    "build": "npm run lint && tsc",
+    "dev": "node init && npm run build && concurrently -k \"tsc -w\" \"nodemon dist/index.js  \"",
+    "build": "node init && npm run lint && tsc",
     "lint": "eslint \"**/*.{ts,tsx}\""
   },
   "keywords": [],
