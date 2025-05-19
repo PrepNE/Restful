@@ -1,12 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
-import { Card, Typography, Select, Table, Tag, Space } from "antd";
+import {
+  Card,
+  Typography,
+  Select,
+  Table,
+  Tag,
+  Space,
+  Button,
+} from "antd";
 import {
   ClockCircleOutlined,
   EnvironmentOutlined,
 } from "@ant-design/icons";
 import useVehicles from "@/hooks/useVehicles";
 import useParkingRecords from "@/hooks/useParkingRecords";
+import CheckOutModal from "@/components/modals/CheckoutModal"; // ✅ Ensure correct path
 
 const { Title, Paragraph, Text } = Typography;
 const { Option } = Select;
@@ -22,15 +31,21 @@ const formatDuration = (minutes?: number | null) => {
 };
 
 const History = () => {
-  const [selectedPlate, setSelectedPlate] = useState<string | undefined>(undefined);
+  const [selectedPlate, setSelectedPlate] = useState<string | undefined>();
+  const [showModal, setShowModal] = useState(false);
+  const [selectedForCheckOut, setSelectedForCheckOut] = useState<string | null>(null);
 
   const { vehicles, isLoading: vehiclesLoading } = useVehicles();
   const {
     history: parkingRecords,
     isLoading: recordsLoading,
+    mutate,
   } = useParkingRecords(selectedPlate);
 
-  const totalSpent = parkingRecords?.reduce((sum, r) => sum + (r.amountPaid || 0), 0) || 0;
+  const totalSpent = parkingRecords?.reduce(
+    (sum, r) => sum + (r.amountPaid || 0),
+    0
+  ) || 0;
 
   const columns = [
     {
@@ -88,6 +103,25 @@ const History = () => {
       align: "right" as const,
       render: (amount: number | null) => (amount ? `${amount} RWF` : "-"),
     },
+    {
+      title: "Action",
+      key: "action",
+      render: (_: any, record: any) =>
+        !record.checkOutTime ? (
+          <Button
+            size="small"
+            type="primary"
+            onClick={() => {
+              setSelectedForCheckOut(record.vehicle?.plateNumber);
+              setShowModal(true);
+            }}
+          >
+            Check Out
+          </Button>
+        ) : (
+          <Tag color="green">Completed</Tag>
+        ),
+    },
   ];
 
   return (
@@ -141,6 +175,21 @@ const History = () => {
           )}
         </Card>
       </div>
+
+      <CheckOutModal
+  open={showModal}
+  plateNumber={selectedForCheckOut} // 👈 pass selected vehicle
+  onClose={() => {
+    setShowModal(false);
+    setSelectedForCheckOut(null);
+  }}
+  onSuccess={() => {
+    setShowModal(false);
+    setSelectedForCheckOut(null);
+    mutate(); // refresh history
+  }}
+/>
+
     </div>
   );
 };
