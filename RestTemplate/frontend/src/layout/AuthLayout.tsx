@@ -1,19 +1,23 @@
-import React from 'react'
+import React from "react"
+import { Layout } from "antd";
 
-const AuthLayout = ({children} : {children: React.ReactNode}) => {
+
+const AuthLayout = ({ children }: { children: React.ReactElement}) => {
+
   return (
-    <div className='flex min-h-screen w-full'>
-        <div className='flex flex-col justify-center px-4 py-12 w-full lg:w-[40%]'>
+    <Layout className="site-layout bg-white min-h-screen flex flex-col text-[#333] items-center justify-center py-6 px-4">
+        <div className="grid md:grid-cols-2 items-center gap-4 max-w-7xl w-full">
             {children}
+
+            <div className="hidden md:block lg:block lg:h-[400px] md:h-[300px] max-md:mt-10">
+                    {/* <Link href="/" className="font-bold justify-center pb-10 flex=row flex items-center lg:ml-2.5">
+                        <img src="/logo.png" className="h-6 mr-4" alt="Windster Logo" />
+                        <Text className="self-center whitespace-nowrap text-xl flex flex-row justify-center items-center"><Text className='text-primary text-2xl'>E</Text>-Vote</Text>
+                    </Link> */}
+                    <img src="/car.png" className="w-full h-full object-cover" alt="Experience" />
+                </div>
         </div>
-        <div className='relative hidden w-[60%] flex-1 lg:block'>
-            <img 
-              src="/gradient.jpeg"
-              className='absolute inset-0 h-full w-full object-cover  rounded-l-3xl'
-            />
-            {/* <div className='absolute inset-0 w-full h-full bg-primary rounded-l-3xl'/> */}
-        </div>
-    </div>
+    </Layout>
   )
 }
 

@@ -44,6 +44,12 @@ importers:
       morgan:
         specifier: ^1.10.0
         version: 1.10.0
+      node-cron:
+        specifier: ^4.0.5
+        version: 4.0.5
+      nodemailer:
+        specifier: ^7.0.3
+        version: 7.0.3
       prisma:
         specifier: ^6.8.1
         version: 6.8.2(typescript@4.9.5)
@@ -84,6 +90,9 @@ importers:
       '@types/node':
         specifier: ^17.0.35
         version: 17.0.45
+      '@types/nodemailer':
+        specifier: ^6.4.17
+        version: 6.4.17
       '@types/supertest':
         specifier: ^2.0.12
         version: 2.0.16
@@ -744,6 +753,9 @@ packages:
 
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
+
+  '@types/nodemailer@6.4.17':
+    resolution: {integrity: sha512-I9CCaIp6DTldEg7vyUTZi8+9Vo0hi1/T8gv3C89yk1rSAAzoKQ8H8ki/jBYJSFoH/BisgLP8tkZMlQ91CIquww==}
 
   '@types/prettier@2.7.3':
     resolution: {integrity: sha512-+68kP9yzs4LMp7VNh8gdzMSPZFL44MLGqiHWvttYJe+6qnuVr4Ek9wSBQoveqY/r+LwjCcU29kNVkidwim+kYA==}
@@ -2097,11 +2109,19 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
+  node-cron@4.0.5:
+    resolution: {integrity: sha512-XN5PwNBniFz6y9Ic/VChtrBtlXfAqdKUFou7nid/1pLGNFKO7cXN1nmLKUL7KLnM/Y4nUe5/EC+GsAghCj/N5g==}
+    engines: {node: '>=6.0.0'}
+
   node-int64@0.4.0:
     resolution: {integrity: sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==}
 
   node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
+
+  nodemailer@7.0.3:
+    resolution: {integrity: sha512-Ajq6Sz1x7cIK3pN6KesGTah+1gnwMnx5gKl3piQlQQE/PwyJ4Mbc8is2psWYxK3RJTVeqsDaCv8ZzXLCDHMTZw==}
+    engines: {node: '>=6.0.0'}
 
   nodemon@2.0.22:
     resolution: {integrity: sha512-B8YqaKMmyuCO7BowF1Z1/mkPqLk6cs/l63Ojtd6otKjMx47Dq1utxfRxcavH1I7VSaL8n5BUaoutadnsX3AAVQ==}
@@ -3692,6 +3712,10 @@ snapshots:
       '@types/express': 4.17.22
 
   '@types/node@17.0.45': {}
+
+  '@types/nodemailer@6.4.17':
+    dependencies:
+      '@types/node': 17.0.45
 
   '@types/prettier@2.7.3': {}
 
@@ -5306,9 +5330,13 @@ snapshots:
 
   neo-async@2.6.2: {}
 
+  node-cron@4.0.5: {}
+
   node-int64@0.4.0: {}
 
   node-releases@2.0.19: {}
+
+  nodemailer@7.0.3: {}
 
   nodemon@2.0.22:
     dependencies:
